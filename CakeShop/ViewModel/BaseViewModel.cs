@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WeSplit.ViewModel
+namespace CakeShop.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

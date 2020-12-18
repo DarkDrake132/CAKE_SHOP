@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CakeShop.ViewModel
 {
-    class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
+
     }
 }
