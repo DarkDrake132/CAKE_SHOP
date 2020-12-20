@@ -24,5 +24,43 @@ namespace CakeShop
         {
             InitializeComponent();
         }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ListViewMenu.SelectedIndex;
+            MoveCursormenu(index);
+
+            switch (index)
+            {
+                case 0:
+                    GridPriciple.Children.Clear();
+                    GridPriciple.Children.Add(new HomeUserControl());
+                    break;
+                case 1:
+                    GridPriciple.Children.Clear();
+                    GridPriciple.Children.Add(new StatisticsUserControl());
+                    break;
+                case 2:
+                    GridPriciple.Children.Clear();
+                    GridPriciple.Children.Add(new AddUserControl());
+                    break;
+                case 3:
+                    GridPriciple.Children.Clear();
+                    GridPriciple.Children.Add(new BillUserControl());
+                    break;
+                case 4:
+                    GridPriciple.Children.Clear();
+                    GridPriciple.Children.Add(new SettingsUserControl());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void MoveCursormenu(int index)
+        {
+            TransitiongContentSldie.OnApplyTemplate();
+            GridCursor.Margin = new Thickness(0, 100 + ((60 * index)), 0, 0);
+        }
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CakeShop\CakeShop\obj\Debug\
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\Debug\
 CakeShop
 none
 false
 DEBUG;TRACE
-C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CakeShop\CakeShop\App.xaml
-22079336165
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\App.xaml
+71473576367
 
-8-1284508827
-15902606697
-MainWindow.xaml;ResourceXAML\MainResource.xaml;
+182079401280
+15-671168251
+AddUserControl.xaml;BillUserControl.xaml;HomeUserControl.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;SettingsUserControl.xaml;StatisticsUserControl.xaml;
 
 True
 

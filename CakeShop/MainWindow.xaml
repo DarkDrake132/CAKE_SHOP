@@ -7,8 +7,56 @@
         xmlns:local="clr-namespace:CakeShop"
         mc:Ignorable="d"
         DataContext="{StaticResource MainVM}"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Cake Shop" Height="600" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FFEEEEEE">
+        <Grid Margin="250 0 0 0">
+            <Grid x:Name="GridPriciple">
+
+            </Grid>
+        </Grid>
+        <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
+            <materialDesign:TransitioningContent x:Name="TransitiongContentSldie" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 100 0 0" VerticalAlignment="Top" Width="10" HorizontalAlignment="Left" Height="60" Background="#FF0069C0">
+
+                </Grid>
+            </materialDesign:TransitioningContent>
+            
+            
+            <ListView x:Name="ListViewMenu" Margin="0 100" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
+                <ListViewItem Height="60" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="10 0" Kind="Home" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Home" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="10 0" Kind="ChartAreasplineVariant" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Statistics " FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="10 0" Kind="PlusBox" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="New Product" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="10 0" Kind="CartAdd" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Bill" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="10 0" Kind="SettingsApplications" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Settings" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+  
+        </Grid >
+
         
     </Grid>
 </Window>

@@ -3,4 +3,9 @@
                     xmlns:viewmodel="clr-namespace:CakeShop.ViewModel"
                     xmlns:local="clr-namespace:CakeShop.ResourceXAML">
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:HomeViewModel x:Key="HomeVM"></viewmodel:HomeViewModel>
+    <viewmodel:StaticstisViewModel x:Key="StatisticsVM"></viewmodel:StaticstisViewModel>
+    <viewmodel:AddViewModel x:Key="AddVM"></viewmodel:AddViewModel>
+    <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
+    <viewmodel:SettingsViewModel x:Key="SettingsVM"></viewmodel:SettingsViewModel>
 </ResourceDictionary>
