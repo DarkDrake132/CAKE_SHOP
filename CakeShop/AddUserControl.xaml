@@ -8,7 +8,9 @@
              DataContext="{StaticResource AddVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <StackPanel Background="White">
         <TextBlock Text="New Product"></TextBlock>
-    </Grid>
+        <TextBlock Text="{Binding AddFormatedPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+    </StackPanel>
 </UserControl>
