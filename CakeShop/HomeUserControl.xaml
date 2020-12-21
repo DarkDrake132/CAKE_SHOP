@@ -7,8 +7,58 @@
              xmlns:local="clr-namespace:CakeShop"
              mc:Ignorable="d" 
              DataContext="{StaticResource HomeVM}"
-             d:DesignHeight="600" d:DesignWidth="774">
-    <Grid Background="White">
-        <TextBlock Text="Home"></TextBlock>
+             d:DesignHeight="600" d:DesignWidth="950">
+    <Grid Background="#FF494949">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBox Text="{Binding SearchByName, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Tên Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox Text="{Binding SearchByType, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Loại Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White" />
+            </StackPanel>
+            <Canvas Grid.Column="2">
+                <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" Grid.Column="2" Canvas.Left="21" Canvas.Top="17" Background="#FF7A7373" BorderBrush="Transparent">
+                    <materialDesign:PackIcon Kind="FileFind" Height="24" Width="24" />
+                </Button>
+            </Canvas>
+        </Grid>
+
+        <ListView Grid.Row="1" x:Name="listJourney" ItemsSource="{Binding List}" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Transparent" BorderThickness="5" CornerRadius="20" Background="#FF2C2B2B">
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+                        <StackPanel Margin="8" Width="150" Height="auto">
+                            <Border Width="auto" Height="120" CornerRadius="20">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding thumbnailLink}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding title}" FontSize="19" TextWrapping="Wrap"/>
+                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding price}" FontSize="19" TextWrapping="Wrap"/>
+                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.DetailCommand, Mode=OneWay}" CommandParameter="{Binding id}">
+                                <TextBlock Margin="-15 0 0 0" FontStyle="Italic" TextAlignment="Left" Text="Xem thêm>>" FontSize="12"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ListView>
     </Grid>
 </UserControl>
