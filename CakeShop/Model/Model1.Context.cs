@@ -26,7 +26,8 @@ namespace CakeShop.Model
         }
     
         public virtual DbSet<CAKE> CAKEs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TYPE_CAKE> TYPE_CAKE { get; set; }
+        public virtual DbSet<CAKE_TYPE> CAKE_TYPE { get; set; }
+        public virtual DbSet<RECEIPT> RECEIPTs { get; set; }
+        public virtual DbSet<RECEIPT_DETAIL> RECEIPT_DETAIL { get; set; }
     }
 }

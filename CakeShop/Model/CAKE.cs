@@ -14,12 +14,20 @@ namespace CakeShop.Model
     
     public partial class CAKE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CAKE()
+        {
+            this.RECEIPT_DETAIL = new HashSet<RECEIPT_DETAIL>();
+        }
+    
         public int ID { get; set; }
         public string C_NAME { get; set; }
         public Nullable<int> TYPEID { get; set; }
         public Nullable<int> PRICE { get; set; }
-        public string IMAGE_LINK { get; set; }
+        public string IMG { get; set; }
     
-        public virtual TYPE_CAKE TYPE_CAKE { get; set; }
+        public virtual CAKE_TYPE CAKE_TYPE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RECEIPT_DETAIL> RECEIPT_DETAIL { get; set; }
     }
 }
