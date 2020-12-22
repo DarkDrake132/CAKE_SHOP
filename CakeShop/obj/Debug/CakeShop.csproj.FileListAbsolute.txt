@@ -56,3 +56,8 @@ C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\De
 C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\Debug\BillUserControl.baml
 C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\Debug\SettingsUserControl.baml
 C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\Debug\StatisticsUserControl.baml
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\bin\Debug\EntityFramework.dll
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\bin\Debug\EntityFramework.xml
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dell\Desktop\Lập trình Windows\Project 3\CAKE_SHOP\CakeShop\obj\Debug\CakeShop_Content.g.cs

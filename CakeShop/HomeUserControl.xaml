@@ -43,12 +43,12 @@
                         <StackPanel Margin="8" Width="150" Height="auto">
                             <Border Width="auto" Height="120" CornerRadius="20">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="{Binding thumbnailLink}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
+                                    <ImageBrush ImageSource="{Binding IMAGE_LINK}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
                                 </Border.Background>
                             </Border>
-                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding title}" FontSize="19" TextWrapping="Wrap"/>
-                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding price}" FontSize="19" TextWrapping="Wrap"/>
-                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.DetailCommand, Mode=OneWay}" CommandParameter="{Binding id}">
+                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
+                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
+                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.DetailCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
                                 <TextBlock Margin="-15 0 0 0" FontStyle="Italic" TextAlignment="Left" Text="Xem thêm>>" FontSize="12"/>
                             </Button>
                         </StackPanel>
@@ -64,13 +64,13 @@
 
         <Canvas Grid.Row="2">
             <StackPanel Canvas.Left="425" Canvas.Top="8" Orientation="Horizontal">
-                <Button Background="Transparent" BorderBrush="Transparent" Width="47">
+                <Button Command="{Binding Prev}" Background="Transparent" BorderBrush="Transparent" Width="47">
                     <materialDesign:PackIcon Kind="ChevronLeft" Foreground="White" Height="28" Width="51" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
-                <TextBlock FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">1</TextBlock>
+                <TextBlock FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPageDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <TextBlock Margin="5 0 5 0" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">/</TextBlock>
-                <TextBlock FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">10</TextBlock>
-                <Button Background="Transparent" BorderBrush="Transparent" Width="47">
+                <TextBlock FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding LastPageDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                <Button Command="{Binding Next}" Background="Transparent" BorderBrush="Transparent" Width="47">
                     <materialDesign:PackIcon Kind="ChevronRight" Foreground="White" Height="28" Width="51" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
             </StackPanel>
