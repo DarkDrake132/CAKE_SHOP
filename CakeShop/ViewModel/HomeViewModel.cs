@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CakeShop.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        private const int TotalItemsPerPage = 1;
+        private const int TotalItemsPerPage = 5;
         private int CurrentPage;
         private int LastPage;
 
@@ -71,6 +72,7 @@ namespace CakeShop.ViewModel
         public ICommand Next { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand BuyCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
         public HomeViewModel()
         {
@@ -125,6 +127,14 @@ namespace CakeShop.ViewModel
             }, (p) =>
             {
 
+            });
+
+            UpdateCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                MessageBox.Show(p.ToString());
             });
         }
 

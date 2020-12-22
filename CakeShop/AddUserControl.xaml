@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CakeShop"
              DataContext="{StaticResource AddVM}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="800">
     <StackPanel Background="White">
         <TextBlock Text="New Product"></TextBlock>
         <TextBlock Text="{Binding AddFormatedPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

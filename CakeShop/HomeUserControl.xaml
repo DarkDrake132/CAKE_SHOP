@@ -7,12 +7,12 @@
              xmlns:local="clr-namespace:CakeShop"
              mc:Ignorable="d" 
              DataContext="{StaticResource HomeVM}"
-             d:DesignHeight="700" d:DesignWidth="950">
+             d:DesignHeight="800" d:DesignWidth="900">
     <Grid Background="#FF494949">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="33"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -33,26 +33,33 @@
             </Canvas>
         </Grid>
 
-        <ListView Grid.Row="1" x:Name="listJourney" ItemsSource="{Binding List}" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Grid.Row="1" x:Name="listCake" ItemsSource="{Binding List}" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Transparent" BorderThickness="5" CornerRadius="20" Background="#FF2C2B2B">
-                        <Border.Effect>
-                            <DropShadowEffect></DropShadowEffect>
-                        </Border.Effect>
-                        <StackPanel Margin="8" Width="150" Height="auto">
-                            <Border Width="auto" Height="120" CornerRadius="20">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding IMAGE_LINK}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
-                                </Border.Background>
-                            </Border>
-                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
-                            <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
-                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
-                                <TextBlock Margin="-15 0 0 0" FontStyle="Italic" TextAlignment="Left" Text="Mua bánh>>" FontSize="12"/>
-                            </Button>
-                        </StackPanel>
-                    </Border>
+                    <StackPanel Margin="10 0 10 0">
+                        <Border BorderBrush="Transparent" BorderThickness="3" Background="#FF2C2B2B">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick"
+                                              Command="{Binding ElementName=listCake,Path=DataContext.UpdateCommand}"
+                                              CommandParameter="{Binding C_NAME}"/>
+                            </Border.InputBindings>
+                            <Border.Effect>
+                                <DropShadowEffect></DropShadowEffect>
+                            </Border.Effect>
+                            <StackPanel Margin="8 14 8 8" Width="150" Height="auto">
+                                <Border Width="140" Height="120" CornerRadius="10">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding IMAGE_LINK}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
+                                    </Border.Background>
+                              </Border>
+                                <TextBlock Height="50" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
+                                <TextBlock Height="30" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 10 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                        <Button Margin="0 8 0 0" Width="80" Background="#FF494747" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
+                            <TextBlock TextAlignment="Left" Text="Mua bánh" FontSize="12"/>
+                        </Button>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ItemsControl.ItemsPanel>
@@ -63,7 +70,7 @@
         </ListView>
 
         <Canvas Grid.Row="2">
-            <StackPanel Canvas.Left="425" Canvas.Top="8" Orientation="Horizontal">
+            <StackPanel Canvas.Left="432" Orientation="Horizontal">
                 <Button Command="{Binding Prev}" Background="Transparent" BorderBrush="Transparent" Width="47">
                     <materialDesign:PackIcon Kind="ChevronLeft" Foreground="White" Height="28" Width="51" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
