@@ -8,13 +8,13 @@ use CakeShop
 
 create table CAKE_TYPE
 (
-	ID int primary key not null,
+	ID int IDENTITY(1,1) primary key,
 	C_NAME nvarchar(max)
 )
 
 create table CAKE
 (
-	ID int primary key not null,
+	ID int IDENTITY(1,1) primary key,
 	C_NAME nvarchar(max),
 	TYPEID int,
 	PRICE int,
@@ -24,7 +24,7 @@ create table CAKE
 
 create table RECEIPT
 (
-	ID int primary key not null,
+	ID int IDENTITY(1,1) primary key,
 	INPUTDATE date
 )
 
