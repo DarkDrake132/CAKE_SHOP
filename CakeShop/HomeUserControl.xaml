@@ -21,10 +21,10 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <TextBox Text="{Binding SearchByName, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Tên Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White"/>
+                <TextBox Text="{Binding SearchName, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Tên Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBox Text="{Binding SearchByType, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Loại Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White" />
+                <TextBox Text="{Binding SearchType, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Loại Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White" />
             </StackPanel>
             <Canvas Grid.Column="2">
                 <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" Grid.Column="2" Canvas.Left="21" Canvas.Top="17" Background="#FF7A7373" BorderBrush="Transparent">
@@ -48,8 +48,8 @@
                             </Border>
                             <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
                             <TextBlock Height="60" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
-                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.DetailCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
-                                <TextBlock Margin="-15 0 0 0" FontStyle="Italic" TextAlignment="Left" Text="Xem thêm>>" FontSize="12"/>
+                            <Button Margin="0 0 45 0"  Background="Transparent" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
+                                <TextBlock Margin="-15 0 0 0" FontStyle="Italic" TextAlignment="Left" Text="Mua bánh>>" FontSize="12"/>
                             </Button>
                         </StackPanel>
                     </Border>

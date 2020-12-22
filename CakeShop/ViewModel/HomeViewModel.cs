@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,103 +31,57 @@ namespace CakeShop.ViewModel
             set { _lastPageDisplay = value; }
         }
 
+        private string _SearchName;
 
-        public class Cake
+        public string SearchName
         {
-            private int _ID;
-
-            public int ID
-            {
-                get { return _ID; }
-                set { _ID = value; }
-            }
-
-            private string c_Name;
-
-            public string C_NAME
-            {
-                get { return c_Name; }
-                set { c_Name = value; }
-            }
-
-            private int _TYPEID;
-
-            public int TYPEID
-            {
-                get { return _TYPEID; }
-                set { _TYPEID = value; }
-            }
-
-            private int _PRICE;
-
-            public int PRICE
-            {
-                get { return _PRICE; }
-                set { _PRICE = value; }
-            }
-
-            private string _IMAGE_LINK;
-
-            public string IMAGE_LINK
-            {
-                get { return _IMAGE_LINK; }
-                set { _IMAGE_LINK = value; }
-            }
-
-
-            public Cake(int v1, string v2, int v3, int v4, string v5)
-            {
-                this.ID = v1;
-                this.C_NAME = v2;
-                this.TYPEID = v3;
-                this.PRICE = v4;
-                this.IMAGE_LINK = v5;
-            }
+            get { return _SearchName; }
+            set { _SearchName = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<Cake> _oldData;
+        private string _SearchType;
 
-        public ObservableCollection<Cake> OldData
+        public string SearchType
+        {
+            get { return _SearchType; }
+            set { _SearchType = value; }
+        }
+
+
+
+        private ObservableCollection<CakeCollector> _oldData;
+
+        public ObservableCollection<CakeCollector> OldData
         {
             get { return _oldData; }
             set { _oldData = value; }
         }
 
 
-        private ObservableCollection<Cake> _list;
+        private ObservableCollection<CakeCollector> _list;
 
-        public ObservableCollection<Cake> List
+        public ObservableCollection<CakeCollector> List
         {
             get => _list;
             set { _list = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<Cake> CreateList()
-        {
-            ObservableCollection<Cake> Ret = new ObservableCollection<Cake>();
-            Ret.Add(new Cake(1, "A", 1, 10000, "./Images/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"));
-            Ret.Add(new Cake(2, "B", 1, 20000, "./Images/download.jpg"));
-            return Ret;
-        }
-
         public ICommand Prev { get; set; }
 
         public ICommand Next { get; set; }
+        public ICommand SearchCommand { get; set; }
+        public ICommand BuyCommand { get; set; }
+
         public HomeViewModel()
         {
-            OldData = CreateList();
-            CurrentPage = 1;
-            LastPage = (int)Math.Ceiling((double)(OldData.Count() / TotalItemsPerPage));
-            List = new ObservableCollection<Cake>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
-            OnPropertyChanged("List");
-            CurrentPageDisplay = CurrentPage.ToString();
-            LastPageDisplay = LastPage.ToString();
-            OnPropertyChanged("CurrentPageDisplay");
-            OnPropertyChanged("LastPageDisplay");
+            LoadData("", "");
+
+            SearchName = "";
+            SearchType = "";
 
             Prev = new RelayCommand<object>((p) =>
             {
-                if(CurrentPage == 1)
+                if(CurrentPage <= 1)
                 {
                     return false;
                 }
@@ -134,14 +89,15 @@ namespace CakeShop.ViewModel
             }, (p) =>
             {
                 CurrentPage--;
-                List = new ObservableCollection<Cake>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
+                List = new ObservableCollection<CakeCollector>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
                 OnPropertyChanged("List");
                 CurrentPageDisplay = CurrentPage.ToString();
                 OnPropertyChanged("CurrentPageDisplay");
             });
+
             Next = new RelayCommand<object>((p) =>
             {
-                if(CurrentPage == LastPage)
+                if(CurrentPage >= LastPage)
                 {
                     return false;
                 }
@@ -149,11 +105,59 @@ namespace CakeShop.ViewModel
             }, (p) =>
             {
                 CurrentPage++;
-                List = new ObservableCollection<Cake>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
+                List = new ObservableCollection<CakeCollector>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
                 OnPropertyChanged("List");
                 CurrentPageDisplay = CurrentPage.ToString();
                 OnPropertyChanged("CurrentPageDisplay");
             });
+
+            SearchCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                LoadData(SearchName, SearchType);
+            });
+
+            BuyCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+
+            });
+        }
+
+        private void LoadData(string searchName, string searchType)
+        {
+            OldData = new ObservableCollection<CakeCollector>();
+
+            var query = from b in DataProvider.Ins.DB.CAKEs
+                        join c in DataProvider.Ins.DB.CAKE_TYPE on b.TYPEID equals c.ID
+                        where b.C_NAME.Contains(searchName) && c.C_NAME.Contains(searchType)
+                        select new
+                        {
+                            id = b.ID,
+                            name = b.C_NAME,
+                            type = c.C_NAME,
+                            price = b.PRICE ?? 0,
+                            image = b.IMG
+                        };
+
+            foreach (var item in query)
+            {
+                OldData.Add(new CakeCollector(item.id, item.name, item.type, item.price, item.image));
+            }
+
+            CurrentPage = 1;
+            LastPage = (int)Math.Ceiling((double)(OldData.Count() / TotalItemsPerPage));
+            List = new ObservableCollection<CakeCollector>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
+            OnPropertyChanged("List");
+            CurrentPageDisplay = CurrentPage.ToString();
+            LastPageDisplay = LastPage.ToString();
+            OnPropertyChanged("CurrentPageDisplay");
+            OnPropertyChanged("LastPageDisplay");
+
         }
     }
 }

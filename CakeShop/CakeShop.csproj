@@ -84,6 +84,7 @@
     <Compile Include="Model\CAKE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CakeCollector.cs" />
     <Compile Include="Model\CAKE_TYPE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,6 +202,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\20186171820-tiramisu-16k.jpg" />
+    <Resource Include="Images\2018620155259-the-bear-16k.jpg" />
+    <Resource Include="Images\banh-bao-me-13557.jpg" />
+    <Resource Include="Images\banh-bao-nhan-dau-do-13555.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
