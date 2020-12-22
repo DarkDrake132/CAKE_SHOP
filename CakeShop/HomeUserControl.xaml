@@ -57,7 +57,7 @@
                             </StackPanel>
                         </Border>
                         <Button Margin="0 8 0 0" Width="80" Background="#FF494747" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
-                            <TextBlock TextAlignment="Left" Text="Mua bánh" FontSize="12"/>
+                            <TextBlock TextAlignment="Left" Text="Mua" FontSize="12"/>
                         </Button>
                     </StackPanel>
                 </DataTemplate>
@@ -70,7 +70,7 @@
         </ListView>
 
         <Canvas Grid.Row="2">
-            <StackPanel Canvas.Left="432" Orientation="Horizontal">
+            <StackPanel Canvas.Left="400" Orientation="Horizontal">
                 <Button Command="{Binding Prev}" Background="Transparent" BorderBrush="Transparent" Width="47">
                     <materialDesign:PackIcon Kind="ChevronLeft" Foreground="White" Height="28" Width="51" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>

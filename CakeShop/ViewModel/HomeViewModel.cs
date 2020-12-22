@@ -12,7 +12,7 @@ namespace CakeShop.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        private const int TotalItemsPerPage = 5;
+        private const int TotalItemsPerPage = 6;
         private int CurrentPage;
         private int LastPage;
 
