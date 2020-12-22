@@ -16,7 +16,7 @@
         </Grid>
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
             <materialDesign:TransitioningContent x:Name="TransitiongContentSldie" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Margin="0 100 0 0" VerticalAlignment="Top" Width="10" HorizontalAlignment="Left" Height="60" Background="#FF0069C0">
+                <Grid x:Name="GridCursor" Margin="0 100 0 0" VerticalAlignment="Top" Width="10" HorizontalAlignment="Left" Height="60" Background="Wheat">
 
                 </Grid>
             </materialDesign:TransitioningContent>
@@ -25,32 +25,32 @@
             <ListView x:Name="ListViewMenu" Margin="0 100" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Margin="10 0" Kind="Home" Width="30" Height="30"></materialDesign:PackIcon>
-                        <TextBlock Text="Home" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Foreground="Red" Margin="10 0" Kind="Home" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Home" Foreground="Red" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Margin="10 0" Kind="ChartAreasplineVariant" Width="30" Height="30"></materialDesign:PackIcon>
-                        <TextBlock Text="Statistics " FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Foreground="Yellow" Margin="10 0" Kind="ChartAreasplineVariant" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Statistics" Foreground="Yellow" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Margin="10 0" Kind="PlusBox" Width="30" Height="30"></materialDesign:PackIcon>
-                        <TextBlock Text="New Product" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Foreground="Green" Margin="10 0" Kind="PlusBox" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="New Product" Foreground="Green" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Margin="10 0" Kind="CartAdd" Width="30" Height="30"></materialDesign:PackIcon>
-                        <TextBlock Text="Bill" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Foreground="Blue" Margin="10 0" Kind="CartAdd" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Bill" Foreground="Blue" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Margin="10 0" Kind="SettingsApplications" Width="30" Height="30"></materialDesign:PackIcon>
-                        <TextBlock Text="Settings" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
+                        <materialDesign:PackIcon Foreground="Orange" Margin="10 0" Kind="SettingsApplications" Width="30" Height="30"></materialDesign:PackIcon>
+                        <TextBlock Text="Settings" Foreground="Orange" FontSize="22" VerticalAlignment="Center" Margin="20 0"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
