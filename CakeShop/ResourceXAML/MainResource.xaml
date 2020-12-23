@@ -8,4 +8,5 @@
     <viewmodel:AddViewModel x:Key="AddVM"></viewmodel:AddViewModel>
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
     <viewmodel:SettingsViewModel x:Key="SettingsVM"></viewmodel:SettingsViewModel>
+    <viewmodel:SplashScreenViewModel x:Key="SplashVM"></viewmodel:SplashScreenViewModel>
 </ResourceDictionary>
