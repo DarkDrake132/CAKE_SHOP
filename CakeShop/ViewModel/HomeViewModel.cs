@@ -12,7 +12,7 @@ namespace CakeShop.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        private const int TotalItemsPerPage = 6;
+        private const int TotalItemsPerPage = 4;
         private int CurrentPage;
         private int LastPage;
 
@@ -160,7 +160,7 @@ namespace CakeShop.ViewModel
             }
 
             CurrentPage = 1;
-            LastPage = (int)Math.Ceiling((double)(OldData.Count() / TotalItemsPerPage));
+            LastPage = (int)Math.Ceiling(((double)OldData.Count() / (double)TotalItemsPerPage));
             List = new ObservableCollection<CakeCollector>(OldData.Skip((CurrentPage - 1) * TotalItemsPerPage).Take(TotalItemsPerPage));
             OnPropertyChanged("List");
             CurrentPageDisplay = CurrentPage.ToString();

@@ -14,16 +14,16 @@
 
             </Grid>
         </Grid>
-        
+
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
             <materialDesign:TransitioningContent x:Name="TransitiongContentSldie" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                 <Grid x:Name="GridCursor" Margin="0 100 0 0" VerticalAlignment="Top" Width="10" HorizontalAlignment="Left" Height="60" Background="Wheat">
 
                 </Grid>
             </materialDesign:TransitioningContent>
-            
-            
-            <ListView x:Name="ListViewMenu" Margin="0 100" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
+
+
+            <ListView x:Name="ListViewMenu" Margin="0 100 0 0" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
                 <ListViewItem Height="60" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Foreground="Red" Margin="10 0" Kind="Home" Width="30" Height="30"></materialDesign:PackIcon>
@@ -55,9 +55,7 @@
                     </StackPanel>
                 </ListViewItem>
             </ListView>
-  
-        </Grid >
 
-        
+        </Grid >
     </Grid>
 </Window>

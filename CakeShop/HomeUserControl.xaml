@@ -28,7 +28,7 @@
             </StackPanel>
             <Canvas Grid.Column="2">
                 <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" Grid.Column="2" Canvas.Left="21" Canvas.Top="17" Background="#FF7A7373" BorderBrush="Transparent">
-                    <materialDesign:PackIcon Kind="FileFind" Height="24" Width="24" />
+                    <materialDesign:PackIcon Kind="Magnify" Height="24" Width="24" />
                 </Button>
             </Canvas>
         </Grid>
@@ -56,9 +56,14 @@
                                 <TextBlock Height="30" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 10 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Border>
-                        <Button Margin="0 8 0 0" Width="80" Background="#FF494747" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
-                            <TextBlock TextAlignment="Left" Text="Mua" FontSize="12"/>
-                        </Button>
+                        <Border>
+                            <Border.Effect>
+                                <DropShadowEffect/>
+                            </Border.Effect>
+                            <Button Margin="0 8 0 0" Width="80" Background="#FFDA1414" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
+                                <TextBlock TextAlignment="Left" Text="Mua" FontSize="12"/>
+                            </Button>
+                        </Border>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
