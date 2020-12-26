@@ -8,9 +8,42 @@
              DataContext="{StaticResource AddVM}"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="800">
-    <StackPanel Background="White">
-        <TextBlock Text="New Product"></TextBlock>
-        <TextBlock Text="{Binding AddFormatedPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
-    </StackPanel>
+   
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" Grid.Column="0">
+            <Border Margin="10" BorderBrush="Black" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
+                <Image Source="{Binding AddImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"/>
+            </Border>
+            <Button Command="{Binding AddImageCommand}" Background="Black" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Resource name: MaterialDesignRaisedButton">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Image" FontSize="123" Margin="0 0 13 0"/>
+                    <TextBlock Foreground="White">CHỌN HÌNH ẢNH</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBox Text="{Binding AddName}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="25"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Column="0" ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" materialDesign:HintAssist.Hint="LOẠI BÁNH" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="25"/>
+                </Grid>
+                
+                <TextBox Text="{Binding AddPrice}" Margin="10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="25"/>
+                <TextBox Text="{Binding AddInfo}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox Command="{Binding Save}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
+                    <materialDesign:PackIcon Kind="ContentSave" />
+                </CheckBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>
