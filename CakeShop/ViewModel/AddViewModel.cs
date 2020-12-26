@@ -26,12 +26,13 @@ namespace CakeShop.ViewModel
         public ObservableCollection<string> ListType { get => _ListType; set => _ListType = value; }
         private ObservableCollection<TypeCollector> _Type = new ObservableCollection<TypeCollector>();
         private ObservableCollection<string> _ListType = new ObservableCollection<string>();
-        public int AddPrice { get => _AddPrice; set => _AddPrice = value; }
+        public int AddPrice { get => _AddPrice; set { _AddPrice = value; OnPropertyChanged(); } }
         public string AddFormatedPrice { get => _AddFormatedPrice; set => _AddFormatedPrice = value; }
         public string AddImage { get => _AddImage; set { _AddImage = value; OnPropertyChanged(); } }
         public string AddType { get => _AddType; set => _AddType = value; }
         public string AddName { get => _AddName; set => _AddName = value; }
         public string AddInfo { get => _AddInfo; set => _AddInfo = value; }
+        public string AddNewType { get => _AddNewType; set => _AddNewType = value; }
 
         private int _AddPrice;
         private string _AddFormatedPrice;
@@ -39,12 +40,15 @@ namespace CakeShop.ViewModel
         private string _AddType;
         private string _AddName;
         private string _AddInfo;
+        private string _AddNewType;
         public ICommand AddImageCommand { get; set; }
         public ICommand Save { get; set; }
-
+        public ICommand SaveTypeCommand { get; set; }
         public void DoSomething() { }
         public void GetTypeList()
         {
+            Type.Clear();
+            ListType.Clear();
             var query = DataProvider.Ins.DB.CAKE_TYPE;
             foreach (var i in query)
             {
@@ -71,6 +75,7 @@ namespace CakeShop.ViewModel
                     AddImage = ofd.FileName;
                 }
             });
+
             Save = new RelayCommand<object>((p) => 
             {
                 if(AddName == null || AddType == null)
@@ -105,6 +110,22 @@ namespace CakeShop.ViewModel
                 DataProvider.Ins.DB.CAKEs.Add(new CAKE() { C_NAME = AddName, ID = cakeID, PRICE = AddPrice, IMG = AddImage, TYPEID =  typeID});
                 DataProvider.Ins.DB.SaveChanges();
             });
+
+            SaveTypeCommand = new RelayCommand<object>((p) =>
+            {
+                if (AddNewType == null)
+                {
+                    return false;
+                }
+                return true;
+            }, (p) =>
+             {
+                 int id = DataProvider.Ins.DB.CAKE_TYPE.Max(x => x.ID) + 1;
+                 DataProvider.Ins.DB.CAKE_TYPE.Add(new CAKE_TYPE() { ID = id, C_NAME = AddNewType });
+                 DataProvider.Ins.DB.SaveChanges();
+                 GetTypeList();
+                 AddNewType = null;
+             });
         }
 
         private void getFileName(ref string path)
