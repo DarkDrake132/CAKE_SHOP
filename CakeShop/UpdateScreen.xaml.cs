@@ -1,5 +1,4 @@
-﻿using CakeShop.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CakeShop
 {
     /// <summary>
-    /// Interaction logic for StatisticsUserControl.xaml
+    /// Interaction logic for UpdateScreen.xaml
     /// </summary>
-    public partial class StatisticsUserControl : UserControl
+    public partial class UpdateScreen : Window
     {
-        public StaticstisViewModel VM { get; set; }
-        public StatisticsUserControl()
+        public UpdateScreen()
         {
             InitializeComponent();
-            this.DataContext = VM = new StaticstisViewModel();
         }
     }
 }

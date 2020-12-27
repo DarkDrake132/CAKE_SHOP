@@ -41,7 +41,7 @@
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
                                               Command="{Binding ElementName=listCake,Path=DataContext.UpdateCommand}"
-                                              CommandParameter="{Binding C_NAME}"/>
+                                              CommandParameter="{Binding ID}"/>
                             </Border.InputBindings>
                             <Border.Effect>
                                 <DropShadowEffect></DropShadowEffect>
@@ -61,7 +61,7 @@
                                 <DropShadowEffect/>
                             </Border.Effect>
                             <Button Margin="0 8 0 0" Width="80" Background="#FFDA1414" BorderBrush="Transparent" Command="{Binding ElementName=listJourney, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
-                                <TextBlock TextAlignment="Left" Text="Mua" FontSize="12"/>
+                                <TextBlock FontWeight="Bold" TextAlignment="Left" Text="Mua" FontSize="12"/>
                             </Button>
                         </Border>
                     </StackPanel>

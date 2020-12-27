@@ -88,23 +88,25 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5 5 10 10">
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <Canvas Height="30">
+                                <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thống kê tháng:
-                            </TextBlock>
-                            <ComboBox BorderBrush="Transparent" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" SelectedIndex="0" IsEnabled="True" FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15,4,144,4" Background="#FF2C2B2B" Cursor="Arrow">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ComboBoxItem}">
-                                        <Setter Property="Foreground" Value="White"/>
-                                        <Setter Property="Background" Value="#FF2C2B2B"/>
-                                        <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <i:InvokeCommandAction Command="{Binding ChangeChartCommand}"></i:InvokeCommandAction>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </ComboBox>
+                                </TextBlock>
+                                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" SelectedIndex="0" IsEnabled="True" FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Background="#FF2C2B2B" Cursor="Arrow" Canvas.Left="153" Canvas.Top="4">
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ComboBoxItem}">
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="Background" Value="#FF2C2B2B"/>
+                                            <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ChangeStatCommand}"></i:InvokeCommandAction>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </Canvas>
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thu nhập (VND)
                             </TextBlock>
@@ -115,10 +117,51 @@
                             </TextBlock>
                             <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthSold,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                                Bánh bán chạy nhất
+                            </TextBlock>
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Name,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            </TextBlock>
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                                Loại
+                            </TextBlock>
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Type,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </Grid>
             </Border>
         </Grid>
+
+        <Border Grid.Row="1" CornerRadius="8" BorderBrush="Transparent" BorderThickness="9" Background="#FF2C2B2B">
+            <Border.Effect>
+                <DropShadowEffect></DropShadowEffect>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">
+                            Biểu đồ cột doanh thu theo tháng
+                    </TextBlock>
+                </Grid>
+
+                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart}" LegendLocation="None" DataTooltip="{x:Null}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Foreground="White" Title="Tháng" Labels="{Binding LabelX}" FontSize="13">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Foreground="White" Title="VND" FontSize="13"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

@@ -79,8 +79,7 @@ namespace CakeShop.ViewModel
         private ObservableCollection<RECEIPT_DETAIL> _listDetailOfMonth;
         public ObservableCollection<RECEIPT_DETAIL> ListDetailOfMonth
         {
-            get { return _listDetailOfMonth; }
-            set { _listDetailOfMonth = value; }
+            get { return _listDetailOfMonth; } set { _listDetailOfMonth = value; }
         }
 
         private DateTime _startDate;
@@ -101,31 +100,48 @@ namespace CakeShop.ViewModel
             get { return _statMonth; } set { _statMonth = value; }
         }
 
+        private ObservableCollection<AmountSold> _cakeWithSoldMonth;
+        public ObservableCollection<AmountSold> CakeWithSoldMonth
+        {
+            get { return _cakeWithSoldMonth; } set { _cakeWithSoldMonth = value; }
+        }
+
+        private AmountSold _maxSoldMonth;
+        public AmountSold MaxSoldMonth
+        {
+            get { return _maxSoldMonth; } set { _maxSoldMonth = value; }
+        }
+
+        private SeriesCollection _columnChart;
+        public SeriesCollection ColumnChart
+        {
+            get { return _columnChart; }
+            set { _columnChart = value; }
+        }
+
         private int _monthSold;
         public int MonthSold
         {
-            get { return _monthSold; }
-            set { _monthSold = value; }
+            get { return _monthSold; } set { _monthSold = value; }
         }
-
-        public ICommand ChangeChartCommand { get; set; }
-
+        public ICommand ChangeStatCommand { get; set; }
         public ObservableCollection<int> Months { get; set; } = new ObservableCollection<int>();
-        
+        public string[] LabelX { get; set; } = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+
         public StaticstisViewModel()
         {
             SelectedMonth = 1;
             LoadData();
             GetStatistics();
 
-            ChangeChartCommand = new RelayCommand<object>((p) =>
+            ChangeStatCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
                 OnPropertyChanged("SelectedMonth");
                 GetStatistics();
-                OnPropertyChanged("StatMonth"); OnPropertyChanged("MonthIncome"); OnPropertyChanged("MonthSold");
+                OnPropertyChanged("StatMonth"); OnPropertyChanged("MonthIncome"); OnPropertyChanged("MonthSold"); OnPropertyChanged("CakeWithSoldMonth"); OnPropertyChanged("MaxSoldMonth");
             });
         }
 
@@ -162,6 +178,8 @@ namespace CakeShop.ViewModel
         {
             TotalIncome = 0;
             CakeChart = new SeriesCollection();
+            ColumnChart = new SeriesCollection();
+            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { } });
             TotalIncome = ListDetail.Sum(x => x.TOTAL ?? 0);
             foreach (var item in ListType)
             {
@@ -175,6 +193,34 @@ namespace CakeShop.ViewModel
                 }
                 CakeChart.Add(new PieSeries { Values = new ChartValues<double> { Math.Round(100 * (double)typeIncome / (double)TotalIncome, 2) }, Title = item.C_NAME, DataLabels = true });
             }
+
+            for (int i = 1; i <= 12; i++) 
+            {
+                int income = 0;
+                var receiptOfMonth = new ObservableCollection<RECEIPT>();
+                var detailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
+                DateTime start = new DateTime(2020, i, 1);
+                DateTime end = new DateTime(2020, i == 12 ? 12 : i + 1, 1);
+                var query = from a in DataProvider.Ins.DB.RECEIPTs
+                            where a.INPUTDATE >= start && a.INPUTDATE < end
+                            select a;
+                foreach (var item in query)
+                {
+                    receiptOfMonth.Add(item);
+                }
+                foreach (var receipt in receiptOfMonth)
+                {
+                    foreach (var detail in ListDetail)
+                    {
+                        if (detail.RECEIPT_ID == receipt.ID)
+                        {
+                            detailOfMonth.Add(detail);
+                        }
+                    }
+                }
+                income = detailOfMonth.Sum(x => x.TOTAL.GetValueOrDefault());
+                ColumnChart[0].Values.Add(income);
+            }
         }
         private void GetStatistics()
         {
@@ -182,10 +228,11 @@ namespace CakeShop.ViewModel
             MonthSold = 0;
             StatMonth = new ObservableCollection<RECEIPT>();
             ListDetailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
+            CakeWithSoldMonth = new ObservableCollection<AmountSold>();
             StartDate = new DateTime(2020, SelectedMonth, 1);
             EndDate = new DateTime(2020, SelectedMonth == 12 ? 12 : SelectedMonth + 1, 1);
             var query = from a in DataProvider.Ins.DB.RECEIPTs
-                        where a.INPUTDATE > StartDate && a.INPUTDATE < EndDate
+                        where a.INPUTDATE >= StartDate && a.INPUTDATE < EndDate
                         select a;
             foreach(var item in query)
             {
@@ -203,6 +250,25 @@ namespace CakeShop.ViewModel
             }
             MonthIncome = ListDetailOfMonth.Sum(x => x.TOTAL ?? 0);
             MonthSold = ListDetailOfMonth.Sum(x => x.AMOUNT ?? 0);
+            foreach (var cake in ListCake)
+            {
+                int amount = 0;
+                foreach (var detail in ListDetailOfMonth)
+                {
+                    if (detail.CAKE_ID == cake.ID)
+                    {
+                        amount += detail.AMOUNT.GetValueOrDefault();
+                    }
+                }
+                var type = DataProvider.Ins.DB.CAKE_TYPE.Where(x => x.ID == cake.TYPEID).SingleOrDefault();
+                var item = new AmountSold(cake.C_NAME, type.C_NAME, amount);
+                CakeWithSoldMonth.Add(item);
+            }
+            MaxSoldMonth = CakeWithSoldMonth.OrderByDescending(x => x.Amount).First();
+            if(MaxSoldMonth.Amount==0)
+            {
+                MaxSoldMonth = new AmountSold("Không", "Không", 0);
+            }
         }
     }
 }

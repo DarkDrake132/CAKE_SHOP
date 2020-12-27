@@ -9,4 +9,5 @@
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
     <viewmodel:SettingsViewModel x:Key="SettingsVM"></viewmodel:SettingsViewModel>
     <viewmodel:SplashScreenViewModel x:Key="SplashVM"></viewmodel:SplashScreenViewModel>
+    <viewmodel:UpdateScreenViewModel x:Key="UpdateVM"></viewmodel:UpdateScreenViewModel>
 </ResourceDictionary>

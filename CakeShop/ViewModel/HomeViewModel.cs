@@ -134,7 +134,10 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
-                MessageBox.Show(p.ToString());
+                Global.SelectedID = Int32.Parse(p.ToString());
+                UpdateScreen up = new UpdateScreen();
+                up.ShowDialog();
+                LoadData(SearchName, SearchType);
             });
         }
 
