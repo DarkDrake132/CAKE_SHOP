@@ -13,6 +13,10 @@ namespace CakeShop
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var temp = Int32.Parse(value.ToString());
+            if (temp==0)
+            {
+                return temp;
+            }
             string con = temp.ToString("###,###,###,### đ").Replace(',', '.');
             return con;
         }

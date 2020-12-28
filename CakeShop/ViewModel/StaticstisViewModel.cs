@@ -9,6 +9,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CakeShop.ViewModel
 {
@@ -180,7 +181,7 @@ namespace CakeShop.ViewModel
             TotalIncome = 0;
             CakeChart = new SeriesCollection();
             ColumnChart = new SeriesCollection();
-            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { } });
+            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { }, DataLabels = true, Foreground = Brushes.White });            
             TotalIncome = ListDetail.Sum(x => x.TOTAL ?? 0);
             foreach (var item in ListType)
             {
