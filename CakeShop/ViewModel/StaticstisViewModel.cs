@@ -127,6 +127,7 @@ namespace CakeShop.ViewModel
         public ICommand ChangeStatCommand { get; set; }
         public ObservableCollection<int> Months { get; set; } = new ObservableCollection<int>();
         public string[] LabelX { get; set; } = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+        public Func<double, string> Formatter { get; set; }
 
         public StaticstisViewModel()
         {
@@ -220,6 +221,7 @@ namespace CakeShop.ViewModel
                 }
                 income = detailOfMonth.Sum(x => x.TOTAL.GetValueOrDefault());
                 ColumnChart[0].Values.Add(income);
+                Formatter = value => value.ToString("###,###,###,###").Replace(',', '.');
             }
         }
         private void GetStatistics()

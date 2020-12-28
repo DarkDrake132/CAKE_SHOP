@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:CakeShop"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"             xmlns:local="clr-namespace:CakeShop"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"           
              DataContext="{StaticResource StatisticsVM}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="900">
+    <UserControl.Resources>
+        <local:VNDConvert x:Key="MoneyConvert"/>
+    </UserControl.Resources>
     <Grid Background="#FF494949">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -68,7 +72,7 @@
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Tổng thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
                             </TextBlock>
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
@@ -110,7 +114,7 @@
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
                             </TextBlock>
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
@@ -149,7 +153,7 @@
                     </TextBlock>
                 </Grid>
 
-                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart}" LegendLocation="None" DataTooltip="{x:Null}">
+                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart}" LegendLocation="None" DataTooltip="{x:Null}" Foreground="White">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Foreground="White" Title="Tháng" Labels="{Binding LabelX}" FontSize="13">
                             <lvc:Axis.Separator>
@@ -158,7 +162,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Foreground="White" Title="VND" FontSize="13"></lvc:Axis>
+                        <lvc:Axis Foreground="White" Title="VND" FontSize="13" LabelFormatter="{Binding Formatter}"></lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>
