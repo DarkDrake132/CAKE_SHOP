@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
              xmlns:local="clr-namespace:CakeShop"
              mc:Ignorable="d" 
              DataContext="{StaticResource HomeVM}"
@@ -23,9 +24,21 @@
             <StackPanel Grid.Column="0">
                 <TextBox Text="{Binding SearchName, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Tên Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White"/>
             </StackPanel>
-            <StackPanel Grid.Column="1">
-                <TextBox Text="{Binding SearchType, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Loại Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White" />
-            </StackPanel>
+            <Canvas Grid.Column="1" >
+                <!--<TextBox Text="{Binding SearchType, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Loại Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White" />-->
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="20" Canvas.Left="10" Canvas.Top="34">
+                                Loại bánh:
+                </TextBlock>
+                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding CakeList}" SelectedItem="{Binding SearchType,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" SelectedIndex="0" IsEnabled="True" FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="20" Background="#FF494949" Cursor="Arrow" Canvas.Left="135" Canvas.Top="34" Width="155">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#FF2C2B2B"/>
+                            <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </Canvas>
             <Canvas Grid.Column="2">
                 <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" Grid.Column="2" Canvas.Left="21" Canvas.Top="17" Background="#FF7A7373" BorderBrush="Transparent">
                     <materialDesign:PackIcon Kind="Magnify" Height="24" Width="24" />
@@ -51,7 +64,7 @@
                                     <Border.Background>
                                         <ImageBrush ImageSource="{Binding IMAGE_LINK}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
                                     </Border.Background>
-                              </Border>
+                                </Border>
                                 <TextBlock Height="50" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
                                 <TextBlock Height="30" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 10 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
                             </StackPanel>

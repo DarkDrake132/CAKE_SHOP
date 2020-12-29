@@ -66,6 +66,7 @@ namespace CakeShop.ViewModel
             get => _list;
             set { _list = value; OnPropertyChanged(); }
         }
+        public ObservableCollection<string> CakeList { get; set; }
 
         public ICommand Prev { get; set; }
 
@@ -73,7 +74,6 @@ namespace CakeShop.ViewModel
         public ICommand SearchCommand { get; set; }
         public ICommand BuyCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
-
         public HomeViewModel()
         {
             LoadData("", "");
@@ -145,6 +145,18 @@ namespace CakeShop.ViewModel
         {
             OldData = new ObservableCollection<CakeCollector>();
 
+            CakeList = new ObservableCollection<string>();
+            CakeList.Add("Tất cả");
+            foreach (var item in DataProvider.Ins.DB.CAKE_TYPE)
+            {
+                CakeList.Add(item.C_NAME);
+            }
+            
+            if(searchType == "Tất cả")
+            {
+                searchType = "";
+            }
+
             var query = from b in DataProvider.Ins.DB.CAKEs
                         join c in DataProvider.Ins.DB.CAKE_TYPE on b.TYPEID equals c.ID
                         where b.C_NAME.Contains(searchName) && c.C_NAME.Contains(searchType)
@@ -169,9 +181,9 @@ namespace CakeShop.ViewModel
             OnPropertyChanged("List");
             CurrentPageDisplay = CurrentPage.ToString();
             LastPageDisplay = LastPage.ToString();
+            OnPropertyChanged("CakeList");
             OnPropertyChanged("CurrentPageDisplay");
             OnPropertyChanged("LastPageDisplay");
-
         }
     }
 }
