@@ -14,8 +14,8 @@ namespace CakeShop.Model
     
     public partial class RECEIPT_DETAIL
     {
-        public int SERIAL { get; set; }
         public int RECEIPT_ID { get; set; }
+        public int SERIAL { get; set; }
         public Nullable<int> CAKE_ID { get; set; }
         public Nullable<int> TYPEID { get; set; }
         public Nullable<int> AMOUNT { get; set; }

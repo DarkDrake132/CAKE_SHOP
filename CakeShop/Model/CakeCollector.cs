@@ -50,14 +50,22 @@ namespace CakeShop.Model
             set { _image_link = value; }
         }
 
+        private string _info;
 
-        public CakeCollector(int id, string name, string type, int price, string image_link)
+        public string INFO
+        {
+            get { return _info;; }
+            set { _info = value; }
+        }
+
+        public CakeCollector(int id, string name, string type, int price, string image_link, string info)
         {
             this.ID = id;
             this.C_NAME = name;
             this.TYPE = type;
             this.PRICE = price.ToString("#,###", cul.NumberFormat) + " đ";
             this.IMAGE_LINK = image_link;
+            this.INFO = info;
         }
     }
 }

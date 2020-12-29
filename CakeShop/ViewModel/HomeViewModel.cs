@@ -154,12 +154,13 @@ namespace CakeShop.ViewModel
                             name = b.C_NAME,
                             type = c.C_NAME,
                             price = b.PRICE ?? 0,
-                            image = b.IMG
+                            image = b.IMG,
+                            info = b.INFO
                         };
 
             foreach (var item in query)
             {
-                OldData.Add(new CakeCollector(item.id, item.name, item.type, item.price, item.image));
+                OldData.Add(new CakeCollector(item.id, item.name, item.type, item.price, item.image, item.info));
             }
 
             CurrentPage = 1;

@@ -22,6 +22,7 @@ namespace CakeShop.Model
     
         public int ID { get; set; }
         public string C_NAME { get; set; }
+        public string INFO { get; set; }
         public Nullable<int> TYPEID { get; set; }
         public Nullable<int> PRICE { get; set; }
         public string IMG { get; set; }

@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"></ColumnDefinition>
-                <ColumnDefinition Width="400"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <TextBox Text="{Binding SearchName, Mode=TwoWay}" FontSize="20" Margin="10" materialDesign:HintAssist.Hint="Tên Bánh" Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" Height="56" Foreground="#FFFBFAFA" CaretBrush="White" SelectionBrush="White"/>
@@ -37,7 +37,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10 0 10 0">
-                        <Border BorderBrush="Transparent" BorderThickness="3" Background="#FF2C2B2B">
+                        <Border BorderBrush="Transparent" BorderThickness="3" Background="#FF2C2B2B" ToolTip="{Binding INFO}">
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
                                               Command="{Binding ElementName=listCake,Path=DataContext.UpdateCommand}"

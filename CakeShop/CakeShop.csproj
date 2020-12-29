@@ -245,6 +245,8 @@
     <Resource Include="Images\banh-bao-me-13557.jpg" />
     <Resource Include="Images\banh-bao-nhan-dau-do-13555.jpg" />
     <Resource Include="cake.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
