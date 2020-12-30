@@ -126,7 +126,9 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
+                MessageBox.Show(p.ToString());
 
+                int id = Int32.Parse(p.ToString()); //id là id bánh được bấm nút mua
             });
 
             UpdateCommand = new RelayCommand<object>((p) =>
