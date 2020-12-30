@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CakeShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CAKE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="C_NAME" Type="nvarchar(max)" />
+    <Property Name="INFO" Type="nvarchar(max)" />
+    <Property Name="TYPEID" Type="int" />
+    <Property Name="PRICE" Type="int" />
+    <Property Name="IMG" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CAKE_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="C_NAME" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="RECEIPT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="INPUTDATE" Type="date" />
+  </EntityType>
+  <EntityType Name="RECEIPT_DETAIL">
+    <Key>
+      <PropertyRef Name="RECEIPT_ID" />
+      <PropertyRef Name="SERIAL" />
+    </Key>
+    <Property Name="RECEIPT_ID" Type="int" Nullable="false" />
+    <Property Name="SERIAL" Type="int" Nullable="false" />
+    <Property Name="CAKE_ID" Type="int" />
+    <Property Name="TYPEID" Type="int" />
+    <Property Name="AMOUNT" Type="int" />
+    <Property Name="TOTAL" Type="int" />
+  </EntityType>
+  <Association Name="FK__CAKE__TYPEID__2A4B4B5E">
+    <End Role="CAKE_TYPE" Type="Self.CAKE_TYPE" Multiplicity="0..1" />
+    <End Role="CAKE" Type="Self.CAKE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAKE_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAKE">
+        <PropertyRef Name="TYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RECEIPT_D__CAKE___2B3F6F97">
+    <End Role="CAKE" Type="Self.CAKE" Multiplicity="0..1" />
+    <End Role="RECEIPT_DETAIL" Type="Self.RECEIPT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAKE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RECEIPT_DETAIL">
+        <PropertyRef Name="CAKE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RECEIPT_D__RECEI__2C3393D0">
+    <End Role="RECEIPT" Type="Self.RECEIPT" Multiplicity="1" />
+    <End Role="RECEIPT_DETAIL" Type="Self.RECEIPT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RECEIPT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RECEIPT_DETAIL">
+        <PropertyRef Name="RECEIPT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RECEIPT_D__TYPEI__2D27B809">
+    <End Role="CAKE_TYPE" Type="Self.CAKE_TYPE" Multiplicity="0..1" />
+    <End Role="RECEIPT_DETAIL" Type="Self.RECEIPT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAKE_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RECEIPT_DETAIL">
+        <PropertyRef Name="TYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CakeShopModelStoreContainer">
+    <EntitySet Name="CAKE" EntityType="Self.CAKE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CAKE_TYPE" EntityType="Self.CAKE_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RECEIPT" EntityType="Self.RECEIPT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RECEIPT_DETAIL" EntityType="Self.RECEIPT_DETAIL" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CAKE__TYPEID__2A4B4B5E" Association="Self.FK__CAKE__TYPEID__2A4B4B5E">
+      <End Role="CAKE_TYPE" EntitySet="CAKE_TYPE" />
+      <End Role="CAKE" EntitySet="CAKE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RECEIPT_D__CAKE___2B3F6F97" Association="Self.FK__RECEIPT_D__CAKE___2B3F6F97">
+      <End Role="CAKE" EntitySet="CAKE" />
+      <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RECEIPT_D__RECEI__2C3393D0" Association="Self.FK__RECEIPT_D__RECEI__2C3393D0">
+      <End Role="RECEIPT" EntitySet="RECEIPT" />
+      <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RECEIPT_D__TYPEI__2D27B809" Association="Self.FK__RECEIPT_D__TYPEI__2D27B809">
+      <End Role="CAKE_TYPE" EntitySet="CAKE_TYPE" />
+      <End Role="RECEIPT_DETAIL" EntitySet="RECEIPT_DETAIL" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
