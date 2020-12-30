@@ -21,8 +21,8 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="43*"></ColumnDefinition>
+                <ColumnDefinition Width="57*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" CornerRadius="8" BorderBrush="Transparent" BorderThickness="9" Background="#FF2C2B2B">
@@ -36,13 +36,10 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">
-                            Biểu đồ % doanh thu các loại bánh
-                        </TextBlock>
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Text=" Doanh thu các loại bánh (%)"/>
                     </Grid>
 
-                    <lvc:PieChart Foreground="White" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Height="300" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}">
-                    </lvc:PieChart>
+                    <lvc:PieChart Foreground="White" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Margin="10,27,10,48"/>
                 </Grid>
             </Border>
 
@@ -56,11 +53,32 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
-                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">
+                    <Canvas Grid.Row="0">
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="28" Canvas.Top="10">
                             Thống kê chung
                         </TextBlock>
-                    </Grid>
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="256" Canvas.Top="10">
+                            Thống kê năm:
+                        </TextBlock>
+                        <ComboBox BorderBrush="Transparent" ItemsSource="{Binding ListYear}" 
+                                  SelectedItem="{Binding SelectedYear,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                  Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                                  SelectedIndex="0" IsEnabled="True" FontFamily="University" FontStyle="Italic" FontWeight="Bold" Foreground="White" 
+                                  VerticalAlignment="Center" FontSize="22" Background="#FF2C2B2B" Cursor="Arrow" Canvas.Left="414" Canvas.Top="10" Width="74">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ComboBoxItem}">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Background" Value="#FF2C2B2B"/>
+                                    <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChangeTimeCommand}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </Canvas>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -106,7 +124,7 @@
                                     </ComboBox.ItemContainerStyle>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding ChangeStatCommand}"></i:InvokeCommandAction>
+                                            <i:InvokeCommandAction Command="{Binding ChangeTimeCommand}"></i:InvokeCommandAction>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ComboBox>
@@ -148,12 +166,13 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">
-                            Biểu đồ cột doanh thu theo tháng
+                    <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" 
+                               Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                               FontSize="22" Text="{Binding ChartTitle,UpdateSourceTrigger=PropertyChanged}">
                     </TextBlock>
                 </Grid>
 
-                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart}" LegendLocation="None" DataTooltip="{x:Null}" Foreground="White">
+                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart,UpdateSourceTrigger=PropertyChanged}" LegendLocation="None" DataTooltip="{x:Null}" Foreground="White">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Foreground="White" Title="Tháng" Labels="{Binding LabelX}" FontSize="13">
                             <lvc:Axis.Separator>

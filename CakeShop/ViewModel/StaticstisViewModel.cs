@@ -107,6 +107,23 @@ namespace CakeShop.ViewModel
             get { return _cakeWithSoldMonth; } set { _cakeWithSoldMonth = value; }
         }
 
+        private ObservableCollection<int> _listYear;
+
+        public ObservableCollection<int> ListYear
+        {
+            get { return _listYear; }
+            set { _listYear = value; }
+        }
+
+        private int _selectedYear;
+
+        public int SelectedYear
+        {
+            get { return _selectedYear; }
+            set { _selectedYear = value; }
+        }
+
+
         private AmountSold _maxSoldMonth;
         public AmountSold MaxSoldMonth
         {
@@ -125,24 +142,28 @@ namespace CakeShop.ViewModel
         {
             get { return _monthSold; } set { _monthSold = value; }
         }
-        public ICommand ChangeStatCommand { get; set; }
+        public ICommand ChangeTimeCommand { get; set; }
         public ObservableCollection<int> Months { get; set; } = new ObservableCollection<int>();
         public string[] LabelX { get; set; } = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
         public Func<double, string> Formatter { get; set; }
+        public string ChartTitle { get; set; }
 
         public StaticstisViewModel()
         {
             SelectedMonth = 1;
+            SelectedYear = 2020;
             LoadData();
             GetStatistics();
 
-            ChangeStatCommand = new RelayCommand<object>((p) =>
+            ChangeTimeCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
                 OnPropertyChanged("SelectedMonth");
+                OnPropertyChanged("SelectedYear");
                 GetStatistics();
+                GetChart();
                 OnPropertyChanged("StatMonth"); OnPropertyChanged("MonthIncome"); OnPropertyChanged("MonthSold"); OnPropertyChanged("CakeWithSoldMonth"); OnPropertyChanged("MaxSoldMonth");
             });
         }
@@ -156,7 +177,20 @@ namespace CakeShop.ViewModel
             ListType = new ObservableCollection<CAKE_TYPE>(DataProvider.Ins.DB.CAKE_TYPE);
             ListDetail = new ObservableCollection<RECEIPT_DETAIL>(DataProvider.Ins.DB.RECEIPT_DETAIL);
             ListCake = new ObservableCollection<CAKE>(DataProvider.Ins.DB.CAKEs);
+            ListYear = new ObservableCollection<int>();
             CakeWithSold = new ObservableCollection<AmountSold>();
+
+            ListYear.Add(2019);
+            foreach (var detail in DataProvider.Ins.DB.RECEIPTs)
+            {
+                int temp = detail.INPUTDATE.Value.Year;
+                if (ListYear.Any(x => x == temp))
+                {
+                    continue;
+                }
+                ListYear.Add(temp);
+            }
+
             GetChart();
             foreach (var cake in ListCake)
             {
@@ -201,8 +235,8 @@ namespace CakeShop.ViewModel
                 int income = 0;
                 var receiptOfMonth = new ObservableCollection<RECEIPT>();
                 var detailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
-                DateTime start = new DateTime(2020, i, 1);
-                DateTime end = new DateTime(2020, i == 12 ? 12 : i + 1, 1);
+                DateTime start = new DateTime(SelectedYear, i, 1);
+                DateTime end = new DateTime(SelectedYear, i == 12 ? 12 : i + 1, 1);
                 var query = from a in DataProvider.Ins.DB.RECEIPTs
                             where a.INPUTDATE >= start && a.INPUTDATE < end
                             select a;
@@ -223,6 +257,7 @@ namespace CakeShop.ViewModel
                 income = detailOfMonth.Sum(x => x.TOTAL.GetValueOrDefault());
                 ColumnChart[0].Values.Add(income);
                 Formatter = value => value.ToString("###,###,###,###").Replace(',', '.');
+                OnPropertyChanged("ColumnChart");
             }
         }
         private void GetStatistics()
@@ -232,8 +267,8 @@ namespace CakeShop.ViewModel
             StatMonth = new ObservableCollection<RECEIPT>();
             ListDetailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
             CakeWithSoldMonth = new ObservableCollection<AmountSold>();
-            StartDate = new DateTime(2020, SelectedMonth, 1);
-            EndDate = new DateTime(2020, SelectedMonth == 12 ? 12 : SelectedMonth + 1, 1);
+            StartDate = new DateTime(SelectedYear, SelectedMonth, 1);
+            EndDate = new DateTime(SelectedYear, SelectedMonth == 12 ? 12 : SelectedMonth + 1, 1);
             var query = from a in DataProvider.Ins.DB.RECEIPTs
                         where a.INPUTDATE >= StartDate && a.INPUTDATE < EndDate
                         select a;
@@ -272,6 +307,8 @@ namespace CakeShop.ViewModel
             {
                 MaxSoldMonth = new AmountSold("Không", "Không", 0);
             }
+            ChartTitle = $"Biểu đồ cột doanh thu theo tháng năm {SelectedYear}";
+            OnPropertyChanged("ChartTitle");
         }
     }
 }
