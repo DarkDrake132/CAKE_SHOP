@@ -73,7 +73,7 @@
                             <Border.Effect>
                                 <DropShadowEffect/>
                             </Border.Effect>
-                            <Button Margin="0 8 0 0" Width="80" Background="#FFDA1414" BorderBrush="Transparent" Command="{Binding ElementName=List, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
+                            <Button Margin="0 8 0 0" Width="80" Background="#FFDA1414" BorderBrush="Transparent" Command="{Binding ElementName=listCake, Path=DataContext.BuyCommand, Mode=OneWay}" CommandParameter="{Binding ID}">
                                 <TextBlock FontWeight="Bold" TextAlignment="Left" Text="Mua" FontSize="12"/>
                             </Button>
                         </Border>
