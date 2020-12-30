@@ -126,7 +126,8 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
-
+                Global.SelectedID = Int32.Parse(p.ToString());
+                MessageBox.Show(Global.SelectedID.ToString());
             });
 
             UpdateCommand = new RelayCommand<object>((p) =>
