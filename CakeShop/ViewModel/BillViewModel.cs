@@ -10,11 +10,11 @@ namespace CakeShop.ViewModel
 {
     public class BillViewModel :BaseViewModel
     {
-        public ObservableCollection<CAKE> List { get; set; } = new ObservableCollection<CAKE>(DataProvider.Ins.DB.CAKEs);
+        public ObservableCollection<CAKE> List { get; set; } 
 
         public BillViewModel()
         {
-
+            List = new ObservableCollection<CAKE>(DataProvider.Ins.DB.CAKEs);
         }
     }
 }
