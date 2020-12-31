@@ -26,6 +26,7 @@ namespace CakeShop.Model
         public Nullable<int> TYPEID { get; set; }
         public Nullable<int> PRICE { get; set; }
         public string IMG { get; set; }
+        public Nullable<int> VISIBLE { get; set; }
     
         public virtual CAKE_TYPE CAKE_TYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
