@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:CakeShop"
+        xmlns:ImageConverter="clr-namespace:CakeShop.ImageConverter" 
         mc:Ignorable="d"
         DataContext="{StaticResource UpdateVM}"
+        WindowStartupLocation="CenterScreen"
         Title="UpdateScreen" Height="750" Width="800">
+    <Window.Resources>
+        <ImageConverter:AbsoluteConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid Background="LightSlateGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
@@ -18,31 +23,44 @@
                 <ColumnDefinition Width="450" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel VerticalAlignment="Center" Grid.Column="0">
-                <TextBlock Margin="0 0 0 30" FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
+            <Grid VerticalAlignment="Center" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="0 0 0 30" FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
                     Cập nhật bánh
                 </TextBlock>
-                <Border Margin="10" BorderBrush="Black" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
-                    <Image Source="{Binding AddImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"/>
+                <Border Grid.Row="1" Margin="10" BorderBrush="Black" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
+                    <Image x:Name="Image" Source="{Binding AddImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource converter}}" Stretch="Fill">
+                    </Image>
                 </Border>
-                <Button Command="{Binding AddImageCommand}" Background="Black" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Resource name: MaterialDesignRaisedButton">
+                <Button Command="{Binding ReloadImageCommand}"
+                        Grid.Row="1" Margin="410 0 0 390"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                        ToolTip="Quay lại ảnh ban đầu">
+                        <materialDesign:PackIcon Kind="Reload" Height="24" Width="24" />
+                </Button>
+                <Button Grid.Row="2" Command="{Binding AddImageCommand}" Background="Black" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Chọn hình ảnh">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Image" FontSize="123" Margin="0 0 13 0" Foreground="White"/>
                         <TextBlock Foreground="White">CHỌN HÌNH ẢNH</TextBlock>
                     </StackPanel>
                 </Button>
-            </StackPanel>
+            </Grid>
             <StackPanel Grid.Column="1" VerticalAlignment="Center" >
                 <StackPanel>
-                    <TextBox Text="{Binding AddName}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
+                    <TextBox Text="{Binding AddName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
                     <ComboBox Grid.Column="0" ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" materialDesign:HintAssist.Hint="LOẠI BÁNH" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="20" Height="50" Foreground="Black" Cursor="Arrow"/>
                     <TextBox Text="{Binding AddPrice, Mode=TwoWay, ConverterCulture='vi-VN', StringFormat='#,###'}" Margin="10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
                     <TextBox Text="{Binding AddInfo}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <CheckBox materialDesign:ButtonProgressAssist.Value="3" Command="{Binding Save}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
-                        <materialDesign:PackIcon Kind="Sync" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="Update" Foreground="White"/>
                     </CheckBox>
+                    
                 </StackPanel>
             </StackPanel>
         </Grid>

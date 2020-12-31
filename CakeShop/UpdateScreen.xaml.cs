@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CakeShop.ViewModel;
 
 namespace CakeShop
 {
@@ -19,9 +20,11 @@ namespace CakeShop
     /// </summary>
     public partial class UpdateScreen : Window
     {
+        UpdateScreenViewModel VM { get; set; }
         public UpdateScreen()
         {
             InitializeComponent();
+            this.DataContext = VM = new UpdateScreenViewModel();
         }
     }
 }

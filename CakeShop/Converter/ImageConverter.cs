@@ -13,6 +13,10 @@ namespace CakeShop.ImageConverter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string relative = (string)value;
+            if(relative.Contains("/") || relative.Contains("\\"))
+            {
+                return relative;
+            }    
             string folder = Environment.CurrentDirectory.ToString();
             string temp = System.IO.Directory.GetParent(folder).ToString();
             temp = System.IO.Directory.GetParent(temp).ToString();
