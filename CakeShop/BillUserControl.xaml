@@ -8,7 +8,108 @@
              DataContext="{StaticResource BillVM}"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="900">
-    <Grid Background="White">
-        <TextBlock Text="Bill"></TextBlock>
+    <Grid Background="#FFFFF1E5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderThickness="5" Background="Transparent" Margin="5">
+            <Border.BorderBrush>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle StrokeDashArray="4 2"
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                                Tên khách hàng:
+                </TextBlock>
+                <TextBox FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="22" Margin="15 4 10 4">
+                </TextBox>
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                                Địa chỉ:
+                </TextBlock>
+                <TextBox FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="22" Margin="15 4 10 4">
+                </TextBox>
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                                Số điện thoại:
+                </TextBlock>
+                <TextBox FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="22" Margin="15 4 10 4">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                               Hình thức thanh toán: 
+                </TextBlock>
+                <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                                          SelectedIndex="0" IsEnabled="True" FontFamily="University"
+                                          Foreground="#FF4B2104" FontSize="22" Background="Transparent" 
+                                          Cursor="Arrow" Margin="15 4 10 12">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="Foreground" Value="#FF4B2104"/>
+                            <Setter Property="Background" Value="#FFFFF1E5"/>
+                            <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBoxItem>Tiền mặt</ComboBoxItem>
+                    <ComboBoxItem>Thẻ tín dụng</ComboBoxItem>
+                </ComboBox>
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                                Coupon giảm giá:
+                </TextBlock>
+                <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                                          SelectedIndex="0" IsEnabled="True" FontFamily="University"
+                                          Foreground="#FF4B2104" FontSize="22" Background="Transparent" 
+                                          Cursor="Arrow" Margin="15 4 10 12">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="Foreground" Value="#FF4B2104"/>
+                            <Setter Property="Background" Value="#FFFFF1E5"/>
+                            <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBoxItem>Không</ComboBoxItem>
+                    <ComboBoxItem>10%</ComboBoxItem>
+                    <ComboBoxItem>20%</ComboBoxItem>
+                    <ComboBoxItem>50%</ComboBoxItem>
+                </ComboBox>
+                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                               Giao hàng:
+                </TextBlock>
+                <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                                          SelectedIndex="0" IsEnabled="True" FontFamily="University"
+                                          Foreground="#FF4B2104" FontSize="22" Background="Transparent" 
+                                          Cursor="Arrow" Margin="15 4 10 12">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="Foreground" Value="#FF4B2104"/>
+                            <Setter Property="Background" Value="#FFFFF1E5"/>
+                            <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBoxItem>Tại chỗ</ComboBoxItem>
+                    <ComboBoxItem>Theo địa chỉ</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

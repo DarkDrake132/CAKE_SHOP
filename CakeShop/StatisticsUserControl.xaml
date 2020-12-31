@@ -111,7 +111,7 @@
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Tổng thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyConverter}}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyConverter}}" TextWrapping="Wrap">
                             </TextBlock>
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
@@ -156,7 +156,7 @@
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource CurrencyConverter}}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource CurrencyConverter}}" TextWrapping="Wrap">
                             </TextBlock>
                             <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
