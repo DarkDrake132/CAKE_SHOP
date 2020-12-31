@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CakeShop"
              DataContext="{StaticResource BillVM}"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="900">
     <Grid Background="White">
         <TextBlock Text="Bill"></TextBlock>
     </Grid>

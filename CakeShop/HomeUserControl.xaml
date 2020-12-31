@@ -41,6 +41,11 @@
                             <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
                         </Style>
                     </ComboBox.ItemContainerStyle>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SearchCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ComboBox>
             </Canvas>
             <Canvas Grid.Column="2">

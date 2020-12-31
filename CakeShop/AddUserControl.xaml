@@ -31,8 +31,21 @@
                 <TextBlock Margin="0 0 0 30" FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
                     THÊM BÁNH MỚI
                 </TextBlock>
-                <Border Margin="10" BorderBrush="Black" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
+                <Border Margin="10" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
                     <Image Source="{Binding AddImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"/>
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle StrokeDashArray="4 2"
+                      Stroke="Black"
+                      StrokeThickness="3"
+                      RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                      RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                      Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                      Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
                 </Border>
                 <Button Command="{Binding AddImageCommand}" Background="Black" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Resource name: MaterialDesignRaisedButton">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
