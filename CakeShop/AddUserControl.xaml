@@ -9,16 +9,29 @@
              DataContext="{StaticResource AddVM}"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="800">
-    <Grid Background="LightSlateGray">
+    <Grid Background="#FFFFF1E5">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" HorizontalAlignment="Left" BorderBrush="Azure" BorderThickness="3" CornerRadius="12" Width="450" Margin="10">
+        <Border Grid.Row="0" HorizontalAlignment="Left" BorderThickness="5" Background="Transparent" Width="450" Margin="10">
+            <Border.BorderBrush>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle StrokeDashArray="4 2"
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.BorderBrush>
             <StackPanel Orientation="Horizontal">
-                <TextBox Margin="5,5,5,11.6" Text="{Binding AddNewType}" materialDesign:HintAssist.Hint="THÊM LOẠI BÁNH MỚI" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
-                <CheckBox Margin="110 0 0 0" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding SaveTypeCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
-                    <materialDesign:PackIcon Kind="ZipDisk" Foreground="White"/>
+                <TextBox Margin="5,5,5,11.6" Text="{Binding AddNewType}" materialDesign:HintAssist.Hint="THÊM LOẠI BÁNH MỚI" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="#FF4B2104" Cursor="Arrow"/>
+                <CheckBox Background="#FF4B2104" Margin="110 0 0 0" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding SaveTypeCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
+                    <materialDesign:PackIcon Kind="ZipDisk" Foreground="#FFFFF1E5"/>
                 </CheckBox>
             </StackPanel>
         </Border>
@@ -28,7 +41,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" Grid.Column="0">
-                <TextBlock Margin="0 0 0 30" FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
+                <TextBlock Margin="0 0 0 30" FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30">
                     THÊM BÁNH MỚI
                 </TextBlock>
                 <Border Margin="10" Background="Transparent" Height="400" CornerRadius="5" BorderThickness="3">
@@ -37,33 +50,43 @@
                         <VisualBrush>
                             <VisualBrush.Visual>
                                 <Rectangle StrokeDashArray="4 2"
-                      Stroke="Black"
-                      StrokeThickness="3"
-                      RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
-                      RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
-                      Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
-                      Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Border.BorderBrush>
                 </Border>
-                <Button Command="{Binding AddImageCommand}" Background="Black" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Resource name: MaterialDesignRaisedButton">
+                <Button Command="{Binding AddImageCommand}" BorderBrush="Transparent" Background="#FF4B2104" Style="{StaticResource MaterialDesignRaisedButton}" Width="200" ToolTip="Resource name: MaterialDesignRaisedButton">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Image" FontSize="123" Margin="0 0 13 0" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="Image" FontSize="123" Margin="0 0 13 0" Foreground="#FFFFF1E5"/>
                         <TextBlock Foreground="White">CHỌN HÌNH ẢNH</TextBlock>
                     </StackPanel>
                 </Button>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center" >
                 <StackPanel>
-                    <TextBox Text="{Binding AddName}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
-                    <ComboBox Grid.Column="0" ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" materialDesign:HintAssist.Hint="LOẠI BÁNH" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="20" Height="50" Foreground="Black" Cursor="Arrow"/>
-                    <TextBox Text="{Binding AddPrice, Mode=TwoWay, ConverterCulture='vi-VN', StringFormat='#,###'}" Margin="10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
-                    <TextBox Text="{Binding AddInfo}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
+                    <TextBox Text="{Binding AddName}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="#FF4B2104" Cursor="Arrow"/>
+                    <ComboBox ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" 
+                              materialDesign:HintAssist.Hint="LOẠI BÁNH" Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                              FontSize="20" Height="30" Width="150" Foreground="#FF4B2104" Cursor="Arrow" HorizontalAlignment="Left">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="Foreground" Value="#FF4B2104"/>
+                                <Setter Property="Background" Value="#FFFFF1E5"/>
+                                <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                    <TextBox Text="{Binding AddPrice, Mode=TwoWay, ConverterCulture='vi-VN', StringFormat='#,###'}" Margin="10 0 10 10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="#FF4B2104" Cursor="Arrow"/>
+                    <TextBox Text="{Binding AddInfo}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="#FF4B2104" Cursor="Arrow"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <CheckBox materialDesign:ButtonProgressAssist.Value="3" Command="{Binding Save}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
-                        <materialDesign:PackIcon Kind="ZipDisk" Foreground="White"/>
+                    <CheckBox Background="#FF4B2104" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding Save}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
+                        <materialDesign:PackIcon Kind="ZipDisk" Foreground="#FFFFF1E5"/>
                     </CheckBox>
                 </StackPanel>
             </StackPanel>
