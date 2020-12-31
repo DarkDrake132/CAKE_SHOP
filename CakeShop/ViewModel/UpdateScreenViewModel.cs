@@ -62,6 +62,10 @@ namespace CakeShop.ViewModel
             //AddFormatedPrice = double.Parse("12345").ToString("#,###", cul.NumberFormat);
             AddImageCommand = new RelayCommand<object>((p) =>
             {
+                if (AddImage == null && AddPrice == 0 && AddType == null && AddInfo == null && AddImage == null)
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
@@ -123,12 +127,16 @@ namespace CakeShop.ViewModel
 
             DeleteCommand = new RelayCommand<object>((p) =>
             {
+                if (AddImage == null && AddPrice == 0 && AddType == null && AddInfo == null && AddImage == null) 
+                {
+                    return false;
+                }
                 return true;
             }, (p) =>
             {
-                var visible = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
-                visible.VISIBLE = 0;
-                DataProvider.Ins.DB.SaveChanges();
+                //var visible = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
+                //visible.VISIBLE = 0;
+                //DataProvider.Ins.DB.SaveChanges();
                 AddName = null;
                 AddPrice = 0;
                 AddType = null;
