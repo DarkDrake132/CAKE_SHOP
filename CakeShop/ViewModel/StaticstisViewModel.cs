@@ -215,7 +215,7 @@ namespace CakeShop.ViewModel
             TotalIncome = 0;
             CakeChart = new SeriesCollection();
             ColumnChart = new SeriesCollection();
-            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { }, DataLabels = true, Foreground = Brushes.White });            
+            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { }, DataLabels = true, Foreground = Brushes.White, Fill = (Brush)(new BrushConverter().ConvertFrom("#FF4B2104")) });            
             TotalIncome = ListDetail.Sum(x => x.TOTAL ?? 0);
             foreach (var item in ListType)
             {
@@ -256,6 +256,7 @@ namespace CakeShop.ViewModel
                 }
                 income = detailOfMonth.Sum(x => x.TOTAL.GetValueOrDefault());
                 ColumnChart[0].Values.Add(income);
+                ColumnChart.OfType<ColumnSeries>().ToList().FirstOrDefault().Foreground = (Brush)(new BrushConverter().ConvertFrom("#FF4B2104"));
                 Formatter = value => value.ToString("###,###,###,###").Replace(',', '.');
                 OnPropertyChanged("ColumnChart");
             }
