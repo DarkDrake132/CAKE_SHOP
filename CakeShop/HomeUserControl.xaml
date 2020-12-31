@@ -6,9 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
              xmlns:local="clr-namespace:CakeShop"
+             xmlns:converter ="clr-namespace:CakeShop.ImageConverter"
              mc:Ignorable="d" 
              DataContext="{StaticResource HomeVM}"
              d:DesignHeight="800" d:DesignWidth="900">
+    <UserControl.Resources>
+        <converter:AbsoluteConverter x:Key="converter"/>
+    </UserControl.Resources>
     <Grid Background="#FF494949">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
@@ -62,7 +66,7 @@
                             <StackPanel Margin="8 14 8 8" Width="150" Height="auto">
                                 <Border Width="140" Height="120" CornerRadius="10">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="{Binding IMAGE_LINK}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
+                                        <ImageBrush ImageSource="{Binding IMAGE_LINK, Converter={StaticResource converter}}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
                                     </Border.Background>
                                 </Border>
                                 <TextBlock Height="50" FontFamily="University" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>

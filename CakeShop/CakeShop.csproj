@@ -95,6 +95,7 @@
     <Compile Include="BillUserControl.xaml.cs">
       <DependentUpon>BillUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="HomeUserControl.xaml.cs">
       <DependentUpon>HomeUserControl.xaml</DependentUpon>
     </Compile>

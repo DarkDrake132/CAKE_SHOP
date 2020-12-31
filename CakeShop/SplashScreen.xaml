@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CakeShop"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converter="clr-namespace:CakeShop.ImageConverter"
         mc:Ignorable="d"
         DataContext="{StaticResource SplashVM}"
         Title="Welcome!" Height="450" Width="400" Loaded="Window_Load"
@@ -12,6 +13,9 @@
         WindowStyle="None"
         x:Name="SplashScreenWindow"
         Background="#FF2C2B2B">
+    <Window.Resources>
+        <converter:AbsoluteConverter x:Key="converter"/>
+    </Window.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <ToggleButton Background="White" Margin="10" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="Không mở hộp thoai này vào lần sau" IsChecked="{Binding CloseDialog}" />
@@ -21,7 +25,7 @@
         </StackPanel>
         <Border Width="330" Height="300" CornerRadius="6">
             <Border.Background>
-                <ImageBrush RenderOptions.BitmapScalingMode="HighQuality" ImageSource="{Binding ShowImage}"/>
+                <ImageBrush RenderOptions.BitmapScalingMode="HighQuality" ImageSource="{Binding ShowImage, Converter={StaticResource converter}}"/>
             </Border.Background>
         </Border>
         <StackPanel>
