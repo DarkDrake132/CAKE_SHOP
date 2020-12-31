@@ -12,14 +12,15 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         x:Name="SplashScreenWindow"
-        Background="#FF2C2B2B">
+        Background="#FFFFF1E5">
     <Window.Resources>
         <converter:AbsoluteConverter x:Key="converter"/>
     </Window.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <ToggleButton Background="White" Margin="10" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="Không mở hộp thoai này vào lần sau" IsChecked="{Binding CloseDialog}" />
-            <Button Margin="10" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=SplashScreenWindow}" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Left" ToolTip="Đóng" Height="30" Width="30" Background="#FFD11C1C" BorderBrush="Transparent">
+            <ToggleButton Background="#FF4B2104" Margin="10" Style="{StaticResource MaterialDesignSwitchDarkToggleButton}" ToolTip="Không mở hộp thoai này vào lần sau" IsChecked="{Binding CloseDialog}" />
+            <Button Margin="10" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=SplashScreenWindow}" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Left" 
+                    ToolTip="Đóng" Height="30" Width="30" Background="#FF4B2104" BorderBrush="Transparent" Foreground="#FFFFF1E5">
                 <materialDesign:PackIcon Kind="CloseCircleOutline"/>
             </Button>
         </StackPanel>
@@ -29,8 +30,8 @@
             </Border.Background>
         </Border>
         <StackPanel>
-            <TextBlock Text="{Binding LocationName}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="University" FontStyle="Italic" Margin="0 20 0 0" FontSize="20" FontWeight="Bold" Foreground="WhiteSmoke"/>
-            <TextBlock Text="{Binding SplashTitle}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="University" FontStyle="Italic" Margin="0 5 0 0" FontSize="15" FontWeight="Bold" Foreground="WhiteSmoke"/>
+            <TextBlock Text="{Binding LocationName}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="University" FontStyle="Italic" Margin="0 20 0 0" FontSize="20" FontWeight="Bold" Foreground="#FF4B2104"/>
+            <TextBlock Text="{Binding SplashTitle}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="University" FontStyle="Italic" Margin="0 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#FF4B2104"/>
         </StackPanel>
     </StackPanel>
 </Window>

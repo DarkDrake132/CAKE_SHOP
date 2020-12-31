@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="57*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0"  BorderThickness="5" Background="Transparent" Margin="5">
+            <Border Grid.Column="0" BorderThickness="5" Background="Transparent" Margin="5">
                 <Border.BorderBrush>
                     <VisualBrush>
                         <VisualBrush.Visual>
@@ -95,7 +95,7 @@
                             </ComboBox.ItemContainerStyle>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ChangeTimeCommand}"></i:InvokeCommandAction>
+                                    <i:InvokeCommandAction Command="{Binding ChangeYearCommand}"></i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ComboBox>
@@ -148,7 +148,7 @@
                                     </ComboBox.ItemContainerStyle>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding ChangeTimeCommand}"></i:InvokeCommandAction>
+                                            <i:InvokeCommandAction Command="{Binding ChangeMonthCommand}"></i:InvokeCommandAction>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ComboBox>

@@ -142,7 +142,9 @@ namespace CakeShop.ViewModel
         {
             get { return _monthSold; } set { _monthSold = value; }
         }
-        public ICommand ChangeTimeCommand { get; set; }
+        public ICommand ChangeYearCommand { get; set; }
+        public ICommand ChangeMonthCommand { get; set; }
+
         public ObservableCollection<int> Months { get; set; } = new ObservableCollection<int>();
         public string[] LabelX { get; set; } = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
         public Func<double, string> Formatter { get; set; }
@@ -155,7 +157,7 @@ namespace CakeShop.ViewModel
             LoadData();
             GetStatistics();
 
-            ChangeTimeCommand = new RelayCommand<object>((p) =>
+            ChangeYearCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
@@ -164,6 +166,16 @@ namespace CakeShop.ViewModel
                 OnPropertyChanged("SelectedYear");
                 GetStatistics();
                 GetChart();
+                OnPropertyChanged("StatMonth"); OnPropertyChanged("MonthIncome"); OnPropertyChanged("MonthSold"); OnPropertyChanged("CakeWithSoldMonth"); OnPropertyChanged("MaxSoldMonth");
+            });
+
+            ChangeMonthCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                OnPropertyChanged("SelectedMonth");
+                GetStatistics();
                 OnPropertyChanged("StatMonth"); OnPropertyChanged("MonthIncome"); OnPropertyChanged("MonthSold"); OnPropertyChanged("CakeWithSoldMonth"); OnPropertyChanged("MaxSoldMonth");
             });
         }
@@ -212,25 +224,15 @@ namespace CakeShop.ViewModel
 
         private void GetChart()
         {
-            TotalIncome = 0;
-            CakeChart = new SeriesCollection();
-            ColumnChart = new SeriesCollection();
-            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { }, DataLabels = true, Foreground = Brushes.White, Fill = (Brush)(new BrushConverter().ConvertFrom("#FF4B2104")) });            
-            TotalIncome = ListDetail.Sum(x => x.TOTAL ?? 0);
-            foreach (var item in ListType)
-            {
-                int typeIncome = 0;
-                foreach (var detail in ListDetail)
-                {
-                    if (item.ID == detail.TYPEID)
-                    {
-                        typeIncome += detail.TOTAL.GetValueOrDefault();
-                    }
-                }
-                CakeChart.Add(new PieSeries { Values = new ChartValues<double> { Math.Round(100 * (double)typeIncome / (double)TotalIncome, 2) }, Title = item.C_NAME, DataLabels = true });
-            }
+            GetCakeChart();
+            GetColumnChart();
+        }
 
-            for (int i = 1; i <= 12; i++) 
+        private void GetColumnChart()
+        {
+            ColumnChart = new SeriesCollection();
+            ColumnChart.Add(new ColumnSeries { Values = new ChartValues<int> { }, DataLabels = true, Foreground = Brushes.White, Fill = (Brush)(new BrushConverter().ConvertFrom("#FF4B2104")) });
+            for (int i = 1; i <= 12; i++)
             {
                 int income = 0;
                 var receiptOfMonth = new ObservableCollection<RECEIPT>();
@@ -261,6 +263,26 @@ namespace CakeShop.ViewModel
                 OnPropertyChanged("ColumnChart");
             }
         }
+
+        private void GetCakeChart()
+        {
+            TotalIncome = 0;
+            CakeChart = new SeriesCollection();
+            TotalIncome = ListDetail.Sum(x => x.TOTAL ?? 0);
+            foreach (var item in ListType)
+            {
+                int typeIncome = 0;
+                foreach (var detail in ListDetail)
+                {
+                    if (item.ID == detail.TYPEID)
+                    {
+                        typeIncome += detail.TOTAL.GetValueOrDefault();
+                    }
+                }
+                CakeChart.Add(new PieSeries { Values = new ChartValues<double> { Math.Round(100 * (double)typeIncome / (double)TotalIncome, 2) }, Title = item.C_NAME, DataLabels = true });
+            }
+        }
+
         private void GetStatistics()
         {
             MonthIncome = 0;
