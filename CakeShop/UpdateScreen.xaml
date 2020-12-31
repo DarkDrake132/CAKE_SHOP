@@ -83,7 +83,7 @@
                     <CheckBox Background="#FF4B2104" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding SaveCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
                         <materialDesign:PackIcon Kind="Update" Foreground="#FFFFF1E5"/>
                     </CheckBox>
-                    <CheckBox Margin="30 0 0 0" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding DeleteCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Xóa bánh" Height="50" Width="50">
+                    <CheckBox Background="#FF4B2104" Margin="30 0 0 0" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding DeleteCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Xóa bánh" Height="50" Width="50">
                         <materialDesign:PackIcon Kind="Delete" Foreground="White"/>
                     </CheckBox>
                 </StackPanel>
