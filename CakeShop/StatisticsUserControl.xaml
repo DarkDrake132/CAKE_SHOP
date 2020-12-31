@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <local:VNDConvert x:Key="MoneyConvert"/>
     </UserControl.Resources>
-    <Grid Background="#FF494949">
+    <Grid Background="#FFFFF1E5">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -25,10 +25,20 @@
                 <ColumnDefinition Width="57*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" CornerRadius="8" BorderBrush="Transparent" BorderThickness="9" Background="#FF2C2B2B">
-                <Border.Effect>
-                    <DropShadowEffect></DropShadowEffect>
-                </Border.Effect>
+            <Border Grid.Column="0"  BorderThickness="5" Background="Transparent" Margin="5">
+                <Border.BorderBrush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle StrokeDashArray="4 2"
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.BorderBrush>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="43"></RowDefinition>
@@ -36,17 +46,27 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Text=" Doanh thu các loại bánh (%)"/>
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Text=" Doanh thu các loại bánh (%)"/>
                     </Grid>
 
-                    <lvc:PieChart Foreground="White" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Margin="10,27,10,48"/>
+                    <lvc:PieChart Foreground="#FF4B2104" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Margin="10,27,10,48"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Column="1" CornerRadius="8" BorderBrush="Transparent" BorderThickness="9" Background="#FF2C2B2B">
-                <Border.Effect>
-                    <DropShadowEffect></DropShadowEffect>
-                </Border.Effect>
+            <Border Grid.Column="1" BorderThickness="5" Background="Transparent" Margin="5">
+                <Border.BorderBrush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle StrokeDashArray="4 2"
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.BorderBrush>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="43"></RowDefinition>
@@ -54,22 +74,22 @@
                     </Grid.RowDefinitions>
 
                     <Canvas Grid.Row="0">
-                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="28" Canvas.Top="10">
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="28" Canvas.Top="10">
                             Thống kê chung
                         </TextBlock>
-                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="256" Canvas.Top="10">
+                        <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Canvas.Left="256" Canvas.Top="10">
                             Thống kê năm:
                         </TextBlock>
                         <ComboBox BorderBrush="Transparent" ItemsSource="{Binding ListYear}" 
                                   SelectedItem="{Binding SelectedYear,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                   Style="{StaticResource MaterialDesignDataGridComboBox}" 
-                                  SelectedIndex="0" IsEnabled="True" FontFamily="University" FontStyle="Italic" FontWeight="Bold" Foreground="White" 
-                                  VerticalAlignment="Center" FontSize="22" Background="#FF2C2B2B" Cursor="Arrow" Canvas.Left="414" Canvas.Top="10" Width="74">
+                                  SelectedIndex="0" IsEnabled="True" FontFamily="University" FontStyle="Italic" FontWeight="Bold" Foreground="#FF4B2104" 
+                                  VerticalAlignment="Center" FontSize="22" Background="Transparent" Cursor="Arrow" Canvas.Left="414" Canvas.Top="10" Width="74">
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ComboBoxItem}">
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Background" Value="#FF2C2B2B"/>
-                                    <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
+                                    <Setter Property="Foreground" Value="#FF4B2104"/>
+                                    <Setter Property="Background" Value="#FFFFF1E5"/>
+                                    <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
                                 </Style>
                             </ComboBox.ItemContainerStyle>
                             <i:Interaction.Triggers>
@@ -87,39 +107,42 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="5 5 10 10">
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Tổng thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalSold,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding TotalSold,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Bánh bán chạy nhất
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSold.Name,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSold.Name,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Loại
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSold.Type,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSold.Type,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5 5 10 10">
                             <Canvas Height="30">
-                                <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                                <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thống kê tháng:
                                 </TextBlock>
-                                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" SelectedIndex="0" IsEnabled="True" FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Background="#FF2C2B2B" Cursor="Arrow" Canvas.Left="153" Canvas.Top="4">
+                                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding Months}" SelectedItem="{Binding SelectedMonth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                                          SelectedIndex="0" IsEnabled="True" FontFamily="University" FontWeight="Bold" 
+                                          Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Background="Transparent" 
+                                          Cursor="Arrow" Canvas.Left="153" Canvas.Top="4">
                                     <ComboBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ComboBoxItem}">
-                                            <Setter Property="Foreground" Value="White"/>
-                                            <Setter Property="Background" Value="#FF2C2B2B"/>
-                                            <Setter Property="BorderBrush" Value="#FF2C2B2B"/>
+                                            <Setter Property="Foreground" Value="#FF4B2104"/>
+                                            <Setter Property="Background" Value="#FFFFF1E5"/>
+                                            <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
                                         </Style>
                                     </ComboBox.ItemContainerStyle>
                                     <i:Interaction.Triggers>
@@ -129,25 +152,25 @@
                                     </i:Interaction.Triggers>
                                 </ComboBox>
                             </Canvas>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Thu nhập (VND)
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthIncome,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MoneyConvert}}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Số lượng bánh bán ra
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthSold,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MonthSold,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Bánh bán chạy nhất
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Name,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Name,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
+                            <TextBlock FontFamily="University" FontStyle="Italic" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="2 4 2 4">
                                 Loại
                             </TextBlock>
-                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Type,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
+                            <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="19" Margin="15 4 10 4" Text="{Binding MaxSoldMonth.Type,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap">
                             </TextBlock>
                         </StackPanel>
                     </Grid>
@@ -155,10 +178,20 @@
             </Border>
         </Grid>
 
-        <Border Grid.Row="1" CornerRadius="8" BorderBrush="Transparent" BorderThickness="9" Background="#FF2C2B2B">
-            <Border.Effect>
-                <DropShadowEffect></DropShadowEffect>
-            </Border.Effect>
+        <Border Grid.Row="1"  BorderThickness="5" Background="Transparent" Margin="5">
+            <Border.BorderBrush>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle StrokeDashArray="4 2"
+                                                    Stroke="#FF4B2104"
+                                                    StrokeThickness="3"
+                                                    RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                    RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                    Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                    Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.BorderBrush>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="43"></RowDefinition>
@@ -167,21 +200,21 @@
 
                 <Grid Grid.Row="0">
                     <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" 
-                               Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                               Foreground="#FF4B2104" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                FontSize="22" Text="{Binding ChartTitle,UpdateSourceTrigger=PropertyChanged}">
                     </TextBlock>
                 </Grid>
 
-                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart,UpdateSourceTrigger=PropertyChanged}" LegendLocation="None" DataTooltip="{x:Null}" Foreground="White">
+                <lvc:CartesianChart Width="800" Grid.Row="1" Series="{Binding ColumnChart,UpdateSourceTrigger=PropertyChanged}" LegendLocation="None" DataTooltip="{x:Null}" Foreground="#FF4B2104">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Foreground="White" Title="Tháng" Labels="{Binding LabelX}" FontSize="13">
+                        <lvc:Axis Foreground="#FF4B2104" Title="Tháng" Labels="{Binding LabelX}" FontSize="13">
                             <lvc:Axis.Separator>
                                 <lvc:Separator StrokeThickness="0" Step="1"></lvc:Separator>
                             </lvc:Axis.Separator>
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Foreground="White" Title="VND" FontSize="13" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        <lvc:Axis Foreground="#FF4B2104" Title="VND" FontSize="13" LabelFormatter="{Binding Formatter}"></lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>

@@ -158,7 +158,7 @@ namespace CakeShop.ViewModel
                 searchType = "";
             }
 
-            var query = from b in DataProvider.Ins.DB.CAKEs
+            var query = from b in DataProvider.Ins.DB.CAKEs.Where(x => x.VISIBLE == 1)
                         join c in DataProvider.Ins.DB.CAKE_TYPE on b.TYPEID equals c.ID
                         where b.C_NAME.Contains(searchName) && c.C_NAME.Contains(searchType)
                         select new
