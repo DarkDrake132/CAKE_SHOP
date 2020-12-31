@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Globalization;
 
-namespace CakeShop
+namespace CakeShop.Converter
 {
     public class VNDConvert : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var temp = Int32.Parse(value.ToString());
-            if (temp==0)
+            if (temp == 0)
             {
                 return temp;
             }
