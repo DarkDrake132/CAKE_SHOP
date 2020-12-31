@@ -126,8 +126,13 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
-                Global.SelectedID = Int32.Parse(p.ToString());
-                MessageBox.Show(Global.SelectedID.ToString());
+                Global.Cart.Add(Int32.Parse(p.ToString()));
+                string a = "";
+                foreach(var b in Global.Cart.List)
+                {
+                    a += b.ID + " " + b.SL + "\n";
+                }
+                MessageBox.Show(a);
             });
 
             UpdateCommand = new RelayCommand<object>((p) =>
