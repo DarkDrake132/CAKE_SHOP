@@ -53,14 +53,16 @@
                 <StackPanel>
                     <TextBox Text="{Binding AddName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
                     <ComboBox Grid.Column="0" ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" materialDesign:HintAssist.Hint="LOẠI BÁNH" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="20" Height="50" Foreground="Black" Cursor="Arrow"/>
-                    <TextBox Text="{Binding AddPrice, Mode=TwoWay, ConverterCulture='vi-VN', StringFormat='#,###'}" Margin="10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
-                    <TextBox Text="{Binding AddInfo}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
+                    <TextBox Text="{Binding AddPrice, Mode=TwoWay, ConverterCulture='vi-VN', StringFormat='#,###', UpdateSourceTrigger=PropertyChanged}" Margin="10" materialDesign:HintAssist.Hint="GIÁ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
+                    <TextBox Text="{Binding AddInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" materialDesign:HintAssist.Hint="MÔ TẢ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="Black" Cursor="Arrow"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <CheckBox materialDesign:ButtonProgressAssist.Value="3" Command="{Binding Save}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
+                    <CheckBox materialDesign:ButtonProgressAssist.Value="3" Command="{Binding SaveCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Lưu" Height="50" Width="50">
                         <materialDesign:PackIcon Kind="Update" Foreground="White"/>
                     </CheckBox>
-                    
+                    <CheckBox Margin="30 0 0 0" materialDesign:ButtonProgressAssist.Value="3" Command="{Binding DeleteCommand}" Style="{StaticResource MaterialDesignActionDarkCheckBox}" ToolTip="Xóa bánh" Height="50" Width="50">
+                        <materialDesign:PackIcon Kind="Delete" Foreground="White"/>
+                    </CheckBox>
                 </StackPanel>
             </StackPanel>
         </Grid>

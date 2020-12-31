@@ -38,8 +38,9 @@ namespace CakeShop.ViewModel
         private string _AddName;
         private string _AddInfo;
         public ICommand AddImageCommand { get; set; }
-        public ICommand Save { get; set; }
+        public ICommand SaveCommand { get; set; }
         public ICommand ReloadImageCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         public void DoSomething() { }
         public void GetTypeList()
         {
@@ -88,7 +89,7 @@ namespace CakeShop.ViewModel
                tempName = null;
            });
 
-            Save = new RelayCommand<object>((p) =>
+            SaveCommand = new RelayCommand<object>((p) =>
             {
                 if (AddName == null || AddType == null)
                 {
@@ -120,7 +121,20 @@ namespace CakeShop.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
             });
 
-            
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                var visible = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
+                visible.VISIBLE = 0;
+                DataProvider.Ins.DB.SaveChanges();
+                AddName = null;
+                AddPrice = 0;
+                AddType = null;
+                AddInfo = null;
+                AddImage = null;
+            });
         }
 
         private void getFileName(ref string path)

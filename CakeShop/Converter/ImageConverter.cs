@@ -13,7 +13,7 @@ namespace CakeShop.ImageConverter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string relative = (string)value;
-            if(relative.Contains("/") || relative.Contains("\\"))
+            if (relative == null || relative.Contains("/") || relative.Contains("\\"))
             {
                 return relative;
             }    

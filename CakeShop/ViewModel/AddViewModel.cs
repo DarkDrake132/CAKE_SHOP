@@ -107,7 +107,7 @@ namespace CakeShop.ViewModel
                 changedLocation(AddImage, System.IO.Path.GetFileName(AddImage), ref newName);
                 AddImage = newName;
 
-                DataProvider.Ins.DB.CAKEs.Add(new CAKE() { C_NAME = AddName, ID = cakeID, PRICE = AddPrice, IMG = AddImage, TYPEID =  typeID});
+                DataProvider.Ins.DB.CAKEs.Add(new CAKE() { C_NAME = AddName, ID = cakeID, PRICE = AddPrice, IMG = AddImage, TYPEID =  typeID, INFO = AddInfo});
                 DataProvider.Ins.DB.SaveChanges();
             });
 
