@@ -161,7 +161,8 @@
                                 Coupon giảm giá:
                 </TextBlock>
                 <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
-                                          SelectedIndex="0" IsEnabled="True" FontFamily="University"
+                          ItemsSource="{Binding CouponList}" SelectedItem="{Binding CouponType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"           
+                          SelectedIndex="0" IsEnabled="True" FontFamily="University"
                                           Foreground="#FF4B2104" FontSize="22" Background="Transparent" 
                                           Cursor="Arrow" Margin="15 4 10 12">
                     <ComboBox.ItemContainerStyle>
@@ -171,10 +172,6 @@
                             <Setter Property="BorderBrush" Value="#FFFFF1E5"/>
                         </Style>
                     </ComboBox.ItemContainerStyle>
-                    <ComboBoxItem>Không</ComboBoxItem>
-                    <ComboBoxItem>10%</ComboBoxItem>
-                    <ComboBoxItem>20%</ComboBoxItem>
-                    <ComboBoxItem>50%</ComboBoxItem>
                 </ComboBox>
                 <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
                                Giao hàng:
