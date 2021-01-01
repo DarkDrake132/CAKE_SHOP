@@ -70,9 +70,9 @@
             <StackPanel Grid.Column="1" VerticalAlignment="Center" >
                 <StackPanel>
                     <TextBox Text="{Binding AddName}" Margin="10" materialDesign:HintAssist.Hint="TÊN BÁNH" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="20" Foreground="#FF4B2104" Cursor="Arrow"/>
-                    <ComboBox ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10" 
+                    <ComboBox ItemsSource="{Binding ListType}" SelectedItem="{Binding AddType}" Margin="10,10,0,10" 
                               materialDesign:HintAssist.Hint="LOẠI BÁNH" Style="{StaticResource MaterialDesignDataGridComboBox}" 
-                              FontSize="20" Height="30" Width="150" Foreground="#FF4B2104" Cursor="Arrow" HorizontalAlignment="Left">
+                              FontSize="20" Height="30" Width="122" Foreground="#FF4B2104" Cursor="Arrow" HorizontalAlignment="Left">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ComboBoxItem}">
                                 <Setter Property="Foreground" Value="#FF4B2104"/>

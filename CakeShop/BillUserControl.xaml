@@ -49,7 +49,7 @@
                                Text="   Thành tiền">
                     </TextBlock>
                 </StackPanel>
-                
+
                 <ListView x:Name="listBill" Grid.Row="1" ItemsSource="{Binding List, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -116,9 +116,9 @@
 
         <Grid Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="141*"></ColumnDefinition>
+                <ColumnDefinition Width="141*"></ColumnDefinition>
+                <ColumnDefinition Width="163*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="5">
@@ -141,7 +141,7 @@
 
             <StackPanel Grid.Column="1" Margin="5">
                 <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
-                               Hình thức thanh toán: 
+                               Hình thức thanh toán:
                 </TextBlock>
                 <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
                                           SelectedIndex="0" IsEnabled="True" FontFamily="University"
@@ -194,10 +194,10 @@
 
             <StackPanel Grid.Column="2" Margin="5">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                    <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 0 4">
                                 Ngày:
                     </TextBlock>
-                    <TextBlock Text="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="20 4 2 4"></TextBlock>
+                    <TextBlock Text="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="5 4 2 4" Width="246"></TextBlock>
                 </StackPanel>
                 <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FFC91515" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="50" Margin="2 4 2 4">
                                 Tổng
