@@ -238,7 +238,7 @@ namespace CakeShop.ViewModel
                 var receiptOfMonth = new ObservableCollection<RECEIPT>();
                 var detailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
                 DateTime start = new DateTime(SelectedYear, i, 1);
-                DateTime end = new DateTime(SelectedYear, i == 12 ? 12 : i + 1, 1);
+                DateTime end = new DateTime(SelectedYear, i == 12 ? 12 : i + 1, i == 12 ? 31 : 1);
                 var query = from a in DataProvider.Ins.DB.RECEIPTs
                             where a.INPUTDATE >= start && a.INPUTDATE < end
                             select a;
@@ -291,7 +291,7 @@ namespace CakeShop.ViewModel
             ListDetailOfMonth = new ObservableCollection<RECEIPT_DETAIL>();
             CakeWithSoldMonth = new ObservableCollection<AmountSold>();
             StartDate = new DateTime(SelectedYear, SelectedMonth, 1);
-            EndDate = new DateTime(SelectedYear, SelectedMonth == 12 ? 12 : SelectedMonth + 1, 1);
+            EndDate = new DateTime(SelectedYear, SelectedMonth == 12 ? 12 : SelectedMonth + 1, SelectedMonth == 12 ? 31 : 1);
             var query = from a in DataProvider.Ins.DB.RECEIPTs
                         where a.INPUTDATE >= StartDate && a.INPUTDATE < EndDate
                         select a;

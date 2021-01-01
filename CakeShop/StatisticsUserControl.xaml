@@ -50,7 +50,7 @@
                         <TextBlock FontStyle="Italic" FontWeight="Bold" FontFamily="University" Foreground="#FF4B2104" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Text=" Doanh thu các loại bánh (%)"/>
                     </Grid>
 
-                    <lvc:PieChart Foreground="#FF4B2104" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Margin="10,27,10,48"/>
+                    <lvc:PieChart Foreground="#FF4B2104" Grid.Row="1" Series="{Binding CakeChart,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Margin="10,10,10,33"/>
                 </Grid>
             </Border>
 
