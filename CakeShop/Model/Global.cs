@@ -65,6 +65,34 @@ namespace CakeShop.Model
                     }
                 }
             }
+
+            public static void Incre(int id)
+            {
+                foreach (var item in List.Where(x => x.ID == id))
+                {
+                    item.SL++;
+                }
+            }
+
+            public static void Decre(int id)
+            {
+                if(List.Where(x => x.ID == id).SingleOrDefault().SL == 1)
+                {
+                    List.RemoveAll(x => x.ID == id);
+                }
+                else
+                {
+                    foreach (var item in List.Where(x => x.ID == id))
+                    {
+                        item.SL--;
+                    }
+                }
+            }
+
+            public static void Delete(int id)
+            {
+                List.RemoveAll(x => x.ID == id);
+            }
         }
     }
 }

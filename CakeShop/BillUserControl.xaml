@@ -50,41 +50,43 @@
                     </TextBlock>
                 </StackPanel>
                 
-                <ListView Grid.Row="1" ItemsSource="{Binding List}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView x:Name="listBill" Grid.Row="1" ItemsSource="{Binding List, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="5" Width="850">
-                                <Image Height="130" Width="130" Stretch="Fill" Source="{Binding IMG,Converter={StaticResource converter}}"></Image>
+                                <Image Height="130" Width="130" Stretch="Fill" Source="{Binding Image,Converter={StaticResource converter}}"></Image>
                                 <TextBlock FontFamily="University" Foreground="#FF4B2104"  
                                            FontSize="22" TextWrapping="Wrap" Width="180"
-                                           Text="{Binding C_NAME}" Margin="25 0 0 0">
+                                           Text="{Binding Name}" Margin="25 0 0 0">
                                 </TextBlock>
                                 <TextBlock FontFamily="University" Foreground="#FF4B2104" 
                                            FontSize="22" TextWrapping="Wrap" Width="150"
-                                           Text="{Binding PRICE}" Margin="10 0 0 0">
+                                           Text="{Binding PriceOut}" Margin="10 0 0 0">
                                 </TextBlock>
                                 <StackPanel Width="120" Orientation="Horizontal">
                                     <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Background="Transparent" 
                                             BorderBrush="Transparent" Height="30" 
-                                            Width="30" Foreground="#FF4B2104" VerticalAlignment="Top">
+                                            Width="30" Foreground="#FF4B2104" VerticalAlignment="Top"
+                                            Command="{Binding ElementName=listBill, Path=DataContext.Decre, Mode=OneWay}" CommandParameter="{Binding ID}">
                                         <materialDesign:PackIcon Kind="Minus" Width="20" Height="20"/>
                                     </Button>
-                                    <TextBlock FontFamily="University" Foreground="#FF4B2104" FontSize="22" Margin="5 0 5 0">
-                                        1
+                                    <TextBlock Text="{Binding SL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="University" Foreground="#FF4B2104" FontSize="22" Margin="5 0 5 0">
                                     </TextBlock>
                                     <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Background="Transparent" 
                                             BorderBrush="Transparent" Height="30" Width="30" 
-                                            Foreground="#FF4B2104" VerticalAlignment="Top">
+                                            Foreground="#FF4B2104" VerticalAlignment="Top"
+                                            Command="{Binding ElementName=listBill, Path=DataContext.Incre, Mode=OneWay}" CommandParameter="{Binding ID}">
                                         <materialDesign:PackIcon Kind="Plus" Width="20" Height="20" Foreground="#FF4B2104"/>
                                     </Button>
                                 </StackPanel>
                                 <TextBlock FontFamily="University" Foreground="#FF4B2104" 
                                            FontSize="22" TextWrapping="Wrap" Width="150" TextAlignment="Right"
-                                           Text="123.45dddđ6">
+                                           Text="{Binding TotalOut, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 </TextBlock>
                                 <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}" Background="#FF4B2104" 
                                             BorderBrush="Transparent" Height="30" Width="30" 
-                                            Foreground="#FFFFF1E5" VerticalAlignment="Top" Margin="10 0 5 0">
+                                            Foreground="#FFFFF1E5" VerticalAlignment="Top" Margin="10 0 5 0"
+                                        Command="{Binding ElementName=listBill, Path=DataContext.Delete, Mode=OneWay}" CommandParameter="{Binding ID}">
                                     <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
                                 </Button>
                             </StackPanel>
@@ -194,22 +196,24 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" Margin="5">
-                <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="2 4 2 4">
                                 Ngày:
-                </TextBlock>
+                    </TextBlock>
+                    <TextBlock Text="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="23" Margin="20 4 2 4"></TextBlock>
+                </StackPanel>
                 <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FFC91515" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="50" Margin="2 4 2 4">
                                 Tổng
                 </TextBlock>
-                <TextBlock FontFamily="University" Foreground="#FFC91515" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="45" Margin="15 4 10 4">
-                    69.69000 đ
+                <TextBlock Text="{Binding TotalCostString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="University" Foreground="#FFC91515" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="45" Margin="15 4 10 4">
                 </TextBlock>
                 <Canvas>
-                    <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" 
+                    <Button Command="{Binding CancelCommand}" DockPanel.Dock="Right" HorizontalAlignment="Center" 
                         VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" 
                         Grid.Column="2" Canvas.Left="116" Canvas.Top="17" Background="#FF4B2104" BorderBrush="Transparent" Foreground="#FFFFF1E5">
                         <materialDesign:PackIcon Kind="Close" Height="24" Width="24" />
                     </Button>
-                    <Button Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" HorizontalAlignment="Center" 
+                    <Button Command="{Binding SubmitCommand}" DockPanel.Dock="Right" HorizontalAlignment="Center" 
                         VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionLightButton}" ToolTip="Tìm kiếm" 
                         Grid.Column="2" Canvas.Left="204" Canvas.Top="17" Background="#FFC91515" BorderBrush="Transparent" Foreground="#FFFFF1E5">
                         <materialDesign:PackIcon Kind="Check" Height="24" Width="24" />

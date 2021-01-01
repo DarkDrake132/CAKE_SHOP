@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CakeShop.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace CakeShop
     /// </summary>
     public partial class BillUserControl : UserControl
     {
+        public BillViewModel VM { get; set; }
         public BillUserControl()
         {
             InitializeComponent();
+            this.DataContext = VM = new BillViewModel();
         }
     }
 }

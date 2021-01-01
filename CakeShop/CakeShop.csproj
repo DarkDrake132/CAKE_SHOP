@@ -101,6 +101,7 @@
       <DependentUpon>HomeUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AmountSold.cs" />
+    <Compile Include="Model\BillCollector.cs" />
     <Compile Include="Model\CAKE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
