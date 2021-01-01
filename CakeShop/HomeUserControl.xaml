@@ -32,10 +32,10 @@
                 <TextBlock FontFamily="University" FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" FontSize="20" Canvas.Left="10" Canvas.Top="34">
                                 Loại bánh:
                 </TextBlock>
-                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding CakeList}" SelectedItem="{Binding SearchType,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" 
-                          SelectedIndex="0" IsEnabled="True" FontFamily="University" 
+                <ComboBox BorderBrush="Transparent" ItemsSource="{Binding CakeList}" SelectedItem="{Binding SearchType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignDataGridComboBox}" 
+                          SelectedIndex="0" FontFamily="University" 
                           FontWeight="Bold" Foreground="#FF4B2104" VerticalAlignment="Center" 
-                          FontSize="20" Background="#FFFFF1E5" Cursor="Arrow" Canvas.Left="135" Canvas.Top="34" Width="155">
+                          FontSize="20" Background="#FFFFF1E5" Canvas.Left="135" Canvas.Top="34" Width="123">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Foreground" Value="#FF4B2104"/>
@@ -63,7 +63,14 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10 0 10 0">
-                        <Border BorderThickness="3" Background="Transparent" ToolTip="{Binding INFO}">
+                        <Border BorderThickness="3" Background="Transparent">
+                            <Border.ToolTip>
+                                <ToolTip MaxWidth="350">
+                                    <TextBlock Text="{Binding INFO}" FontSize="16"
+                                               FontFamily="University" TextWrapping="Wrap"
+                                               Foreground="#FFFFF1E5"/>
+                                </ToolTip>
+                            </Border.ToolTip>
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
                                               Command="{Binding ElementName=listCake,Path=DataContext.UpdateCommand}"

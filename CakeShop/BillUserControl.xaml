@@ -161,7 +161,7 @@
                                 Coupon giảm giá:
                 </TextBlock>
                 <ComboBox BorderBrush="Transparent"  Style="{StaticResource MaterialDesignDataGridComboBox}" 
-                          ItemsSource="{Binding CouponList}" SelectedItem="{Binding CouponType, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"           
+                          ItemsSource="{Binding CouponList}" SelectedItem="{Binding CouponType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"           
                           SelectedIndex="0" IsEnabled="True" FontFamily="University"
                                           Foreground="#FF4B2104" FontSize="22" Background="Transparent" 
                                           Cursor="Arrow" Margin="15 4 10 12">

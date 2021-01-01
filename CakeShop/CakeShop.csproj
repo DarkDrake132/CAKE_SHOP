@@ -249,6 +249,35 @@
     <Resource Include="cake.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\10.jpg" />
+    <Resource Include="Images\11.jpg" />
+    <Resource Include="Images\12.jpg" />
+    <Resource Include="Images\13.jpg" />
+    <Resource Include="Images\14.jpg" />
+    <Resource Include="Images\15.jpg" />
+    <Resource Include="Images\16.jpg" />
+    <Resource Include="Images\17.jpg" />
+    <Resource Include="Images\18.jpg" />
+    <Resource Include="Images\19.jpg" />
+    <Resource Include="Images\20.jpg" />
+    <Resource Include="Images\21.jpg" />
+    <Resource Include="Images\22.jpg" />
+    <Resource Include="Images\23.jpg" />
+    <Resource Include="Images\24.jpg" />
+    <Resource Include="Images\25.jpg" />
+    <Resource Include="Images\26.jpg" />
+    <Resource Include="Images\27.jpg" />
+    <Resource Include="Images\28.jpg" />
+    <Resource Include="Images\29.jpg" />
+    <Resource Include="Images\30.jpg" />
+    <Resource Include="Images\31.jpg" />
+    <Resource Include="Images\32.jpg" />
+    <Resource Include="Images\33.jpg" />
+    <Resource Include="Images\34.jpg" />
+    <Resource Include="Images\35.jpg" />
+    <Resource Include="Images\7.jpg" />
+    <Resource Include="Images\8.jpg" />
+    <Resource Include="Images\9.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
