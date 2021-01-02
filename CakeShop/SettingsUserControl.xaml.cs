@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
+
 
 namespace CakeShop
 {
@@ -23,6 +25,11 @@ namespace CakeShop
         public SettingsUserControl()
         {
             InitializeComponent();
+
+            var value = ConfigurationManager.AppSettings["checkShowDialog"];
+            var showSplash = bool.Parse(value);
+
+            SettingSplashScreen.IsChecked = showSplash;
         }
     }
 }

@@ -278,6 +278,7 @@
     <Resource Include="Images\7.jpg" />
     <Resource Include="Images\8.jpg" />
     <Resource Include="Images\9.jpg" />
+    <Resource Include="Images\khoi.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

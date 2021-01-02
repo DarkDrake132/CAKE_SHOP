@@ -37,20 +37,12 @@ namespace CakeShop.Model
         }
 
 
-        private int _priceIn;
+        private int _price;
 
-        public int PriceIn
+        public int Price
         {
-            get { return _priceIn; }
-            set { _priceIn = value; }
-        }
-
-        private string _priceOut;
-
-        public string PriceOut
-        {
-            get { return _priceOut; }
-            set { _priceOut = value; OnPropertyChanged(); }
+            get { return _price; }
+            set { _price = value; }
         }
 
         private int _sl;
@@ -61,20 +53,12 @@ namespace CakeShop.Model
             set { _sl = value; OnPropertyChanged(); }
         }
 
-        private int _totalIn;
+        private int _total;
 
-        public int TotalIn
+        public int Total
         {
-            get { return _totalIn; }
-            set { _totalIn = value; }
-        }
-
-        private string _totalOut;
-
-        public string TotalOut
-        {
-            get { return _totalOut; }
-            set { _totalOut = value; OnPropertyChanged(); }
+            get { return _total; }
+            set { _total = value; }
         }
 
         public BillCollector(string image, int id, string name, int ?price, int sl)
@@ -82,29 +66,25 @@ namespace CakeShop.Model
             Image = image;
             ID = id;
             Name = name;
-            PriceIn = price ?? 0;
-            PriceOut = PriceIn.ToString("###,###,###,###", cul.NumberFormat) + " đ";
-            SL = sl;
-            TotalIn = PriceIn * SL;
-            TotalOut = TotalIn.ToString("###,###,###,###", cul.NumberFormat) + " đ";
+            Price = price ?? 0;
+            SL = sl;    
+            Total = Price * SL;
         }
 
         public void Incre()
         {
             SL++;
-            TotalIn = PriceIn * SL;
-            TotalOut = TotalIn.ToString("###,###,###,###", cul.NumberFormat) + " đ";
+            Total = Price * SL;
             OnPropertyChanged("SL");
-            OnPropertyChanged("TotalOut");
+            OnPropertyChanged("Total");
         }
 
         public void Decre()
         {
             SL--;
-            TotalIn = PriceIn * SL;
-            TotalOut = TotalIn.ToString("###,###,###,###", cul.NumberFormat) + " đ";
+            Total = Price * SL;
             OnPropertyChanged("SL");
-            OnPropertyChanged("TotalOut");
+            OnPropertyChanged("Total");
         }
     }
 }

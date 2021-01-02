@@ -34,9 +34,9 @@ namespace CakeShop.Model
             set { _type = value; }
         }
 
-        private string _price;
+        private int _price;
 
-        public string PRICE
+        public int PRICE
         {
             get { return _price; }
             set { _price = value; }
@@ -63,7 +63,7 @@ namespace CakeShop.Model
             this.ID = id;
             this.C_NAME = name;
             this.TYPE = type;
-            this.PRICE = price.ToString("#,###", cul.NumberFormat) + " đ";
+            this.PRICE = price;
             this.IMAGE_LINK = image_link;
             this.INFO = info;
         }

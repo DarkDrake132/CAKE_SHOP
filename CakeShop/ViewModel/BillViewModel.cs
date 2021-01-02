@@ -13,7 +13,6 @@ namespace CakeShop.ViewModel
 {
     public class BillViewModel :BaseViewModel
     {
-        CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
         private ObservableCollection<BillCollector> _list;
 
         public ObservableCollection<BillCollector> List
@@ -37,17 +36,9 @@ namespace CakeShop.ViewModel
             set { _totalCost = value; }
         }
 
-        private string _totalCostStraing;
+        private DateTime _date;
 
-        public string TotalCostString
-        {
-            get { return _totalCostStraing; }
-            set { _totalCostStraing = value; OnPropertyChanged(); }
-        }
-
-        private string _date;
-
-        public string Date
+        public DateTime Date
         {
             get { return _date; }
             set { _date = value; OnPropertyChanged(); }
@@ -93,7 +84,7 @@ namespace CakeShop.ViewModel
 
         public BillViewModel()
         {
-            Date = DateTime.Today.ToString();
+            Date = DateTime.Now;
             OnPropertyChanged("Date");
             LoadCoupon();
             LoadData();
@@ -163,6 +154,19 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
+                var id = DataProvider.Ins.DB.RECEIPTs.Max(x => x.ID) + 1;
+
+                DataProvider.Ins.DB.RECEIPTs.Add(new RECEIPT() { ID = id, INPUTDATE = Date });
+                DataProvider.Ins.DB.SaveChanges();
+
+                int serial = 1;
+                foreach(var item in List)
+                {
+                    var typeID = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == item.ID).SingleOrDefault().TYPEID;
+                    DataProvider.Ins.DB.RECEIPT_DETAIL.Add(new RECEIPT_DETAIL() { RECEIPT_ID = id, SERIAL = serial, CAKE_ID = item.ID, TYPEID = typeID, AMOUNT = item.SL, TOTAL = item.Total });
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+
                 Global.Cart.List.Clear();
                 List.Clear();
                 LoadData();
@@ -182,17 +186,15 @@ namespace CakeShop.ViewModel
         private void CalculateSum()
         {
             TotalCost = 0;
-            TotalCostString = "";
             foreach (var item in List)
             {
-                TotalCost += item.TotalIn;
+                TotalCost += item.Total;
             }
             if (CouponType != "Không")
             {
                 var num = int.Parse(CouponType.TrimEnd(new char[] { '%', ' ' }));
                 TotalCost = TotalCost - TotalCost * num / 100;
             }
-            TotalCostString = TotalCost.ToString("###,###,###,###", cul.NumberFormat) + " đ";
             OnPropertyChanged("TotalCostString");
         }
 

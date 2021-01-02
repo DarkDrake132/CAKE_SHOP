@@ -6,12 +6,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
              xmlns:local="clr-namespace:CakeShop"
-             xmlns:converter ="clr-namespace:CakeShop.ImageConverter"
+             xmlns:ImageConverter ="clr-namespace:CakeShop.ImageConverter"
+             xmlns:CurrencyConverter="clr-namespace:CakeShop.Converter" 
              mc:Ignorable="d" 
              DataContext="{StaticResource HomeVM}"
              d:DesignHeight="800" d:DesignWidth="900">
     <UserControl.Resources>
-        <converter:AbsoluteConverter x:Key="converter"/>
+        <ImageConverter:AbsoluteConverter x:Key="ImageConverter"/>
+        <CurrencyConverter:VNDConvert x:Key="CurrencyConverter"/>
     </UserControl.Resources>
     <Grid Background="#FFFFF1E5">
         <Grid.RowDefinitions>
@@ -92,11 +94,11 @@
                             <StackPanel Margin="8 14 8 8" Width="150" Height="auto">
                                 <Border Width="140" Height="120" CornerRadius="10">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="{Binding IMAGE_LINK, Converter={StaticResource converter}}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
+                                        <ImageBrush ImageSource="{Binding IMAGE_LINK, Converter={StaticResource ImageConverter}}" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"></ImageBrush>
                                     </Border.Background>
                                 </Border>
                                 <TextBlock Height="50" FontFamily="University" Foreground="#FF4B2104" FontWeight="Bold" TextAlignment="Center" Margin="5 15 5 0" Text="{Binding C_NAME}" FontSize="19" TextWrapping="Wrap"/>
-                                <TextBlock Height="30" FontFamily="University" Foreground="#FF4B2104" FontWeight="Bold" TextAlignment="Center" Margin="5 10 5 0" Text="{Binding PRICE}" FontSize="19" TextWrapping="Wrap"/>
+                                <TextBlock Height="30" FontFamily="University" Foreground="#FF4B2104" FontWeight="Bold" TextAlignment="Center" Margin="5 10 5 0" Text="{Binding PRICE, Converter={StaticResource CurrencyConverter}}" FontSize="19" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Border>
                         <Border>
