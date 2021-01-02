@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <CheckBox Margin="60 0 0 0" x:Name="SettingSplashScreen" Content="Show Splashscreen!"
-                  VerticalAlignment="Center" Height="50" FontSize="15" IsChecked="{Binding CheckDialog}" Foreground="#FF4B2104" Background="White"/>
+                  VerticalAlignment="Center" Height="50" FontSize="20" IsChecked="{Binding CheckDialog}" Foreground="#FF4B2104" Background="#FF4B2104"
+                      FontFamily="University" FontWeight="Bold"/>
             <Button Content="OK" Width="70" Height="30" Command="{Binding ConfirmCommand}" Background="#FF4B2104" BorderBrush="Transparent" Foreground="White"/>
         </StackPanel>
         <GridSplitter></GridSplitter>
