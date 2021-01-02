@@ -88,14 +88,14 @@
                 <Border Margin="100 20 120 20" Background="Transparent" CornerRadius="5" BorderThickness="3">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderThickness="4" CornerRadius="5" BorderBrush="White">
-                            <Image Width="130" Source="./Images/17.jpg"/>
+                            <Image Width="130" Source="./Images/ha.jpg"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center" Margin="80 0 0 0">
                             <TextBlock FontSize="30" Foreground="#FF4B2104" FontFamily="University">
-                                TÊN: Nguyễn Đình Khôi
+                                TÊN: Nguyễn Vũ Hà
                             </TextBlock>
                             <TextBlock FontSize="20" Foreground="#FF4B2104" FontFamily="University">
-                                MSSV: 18120042
+                                MSSV: 18120175
                             </TextBlock>
                         </StackPanel>
                     </StackPanel>
