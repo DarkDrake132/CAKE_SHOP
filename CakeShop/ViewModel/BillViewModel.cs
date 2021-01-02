@@ -195,7 +195,7 @@ namespace CakeShop.ViewModel
                 var num = int.Parse(CouponType.TrimEnd(new char[] { '%', ' ' }));
                 TotalCost = TotalCost - TotalCost * num / 100;
             }
-            OnPropertyChanged("TotalCostString");
+            OnPropertyChanged("TotalCost");
         }
 
         private void LoadData()
