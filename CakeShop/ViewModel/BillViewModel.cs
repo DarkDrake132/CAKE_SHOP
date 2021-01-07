@@ -164,6 +164,7 @@ namespace CakeShop.ViewModel
                 {
                     var typeID = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == item.ID).SingleOrDefault().TYPEID;
                     DataProvider.Ins.DB.RECEIPT_DETAIL.Add(new RECEIPT_DETAIL() { RECEIPT_ID = id, SERIAL = serial, CAKE_ID = item.ID, TYPEID = typeID, AMOUNT = item.SL, TOTAL = item.Total });
+                    serial += 1;
                     DataProvider.Ins.DB.SaveChanges();
                 }
 

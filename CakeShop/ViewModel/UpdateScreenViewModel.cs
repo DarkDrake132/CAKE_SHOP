@@ -112,7 +112,9 @@ namespace CakeShop.ViewModel
                     }
                 }
 
-                changedLocation(AddImage, System.IO.Path.GetFileName(AddImage));
+                string newName = "";
+                changedLocation(AddImage, System.IO.Path.GetFileName(AddImage), ref newName);
+                AddImage = newName;
 
                 var item = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
 
@@ -134,9 +136,9 @@ namespace CakeShop.ViewModel
                 return true;
             }, (p) =>
             {
-                //var visible = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
-                //visible.VISIBLE = 0;
-                //DataProvider.Ins.DB.SaveChanges();
+                var visible = DataProvider.Ins.DB.CAKEs.Where(x => x.ID == Global.SelectedID).SingleOrDefault();
+                visible.VISIBLE = 0;
+                DataProvider.Ins.DB.SaveChanges();
                 AddName = null;
                 AddPrice = 0;
                 AddType = null;
@@ -151,7 +153,7 @@ namespace CakeShop.ViewModel
             path = path.Substring(0, path.IndexOf(res) - 1);
             //return res;
         }
-        private void changedLocation(string sourcePath, string name)
+        private void changedLocation(string sourcePath, string name, ref string newName)
         {
             string targetPath = Environment.CurrentDirectory.ToString();
             string temp = System.IO.Directory.GetParent(targetPath).ToString();
@@ -166,6 +168,8 @@ namespace CakeShop.ViewModel
             FileInfo f1 = new FileInfo(sourceFile);
             FileInfo f2 = new FileInfo(destFile);
             f1.CopyTo(destFile);
+
+            newName = name;
         }
 
         private void LoadData()

@@ -78,7 +78,7 @@ namespace CakeShop.ViewModel
 
             Save = new RelayCommand<object>((p) => 
             {
-                if(AddName == null || AddType == null)
+                if(AddName == null || AddType == null || AddImage == null)
                 {
                     return false;
                 }
@@ -106,8 +106,8 @@ namespace CakeShop.ViewModel
                 string newName = "";
                 changedLocation(AddImage, System.IO.Path.GetFileName(AddImage), ref newName);
                 AddImage = newName;
-
-                DataProvider.Ins.DB.CAKEs.Add(new CAKE() { C_NAME = AddName, ID = cakeID, PRICE = AddPrice, IMG = AddImage, TYPEID =  typeID, INFO = AddInfo});
+                int visible = 1;
+                DataProvider.Ins.DB.CAKEs.Add(new CAKE() { C_NAME = AddName, ID = cakeID, PRICE = AddPrice, IMG = AddImage, TYPEID =  typeID, INFO = AddInfo, VISIBLE = visible});
                 DataProvider.Ins.DB.SaveChanges();
             });
 
